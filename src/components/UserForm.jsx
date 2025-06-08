@@ -17,7 +17,7 @@ function UserForm({ refreshUsers }) {
 
   const handleUserCreate = async (userData) => {
     try {
-      await axios.post("/api/users", userData);
+      await axios.post("/api/auth/signup", userData);
       await refreshUsers();
       
       setUser({

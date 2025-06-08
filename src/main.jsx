@@ -29,7 +29,7 @@ import SignIn from "./pages/Frontend/SignIn.jsx";
 import Signup from "./pages/Frontend/Signup.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import Profile from "./pages/Frontend/Profile.jsx";
-import AuthRedirect from "./context/AuthRedirect.jsx"
+import AuthRedirect from "./context/AuthRedirect.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,25 +41,34 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'blogs',
+        path: "blogs",
         element: <Blogs />,
         loader: getAllPost,
       },
       {
-        path: 'category',
+        path: "category",
         element: <FCategory />,
+        loader: getAllCategory,
       },
       {
-        path: 'profile',
-        element: <Profile />
+        path: "profile",
+        element: <Profile />,
       },
       {
-        path: 'signin',
-        element: <AuthRedirect><SignIn /></AuthRedirect>,
+        path: "signin",
+        element: (
+          <AuthRedirect>
+            <SignIn />
+          </AuthRedirect>
+        ),
       },
       {
-        path: 'signup',
-        element: <Signup />,
+        path: "signup",
+        element: (
+          <AuthRedirect>
+            <Signup />
+          </AuthRedirect>
+        ),
       },
     ],
   },
@@ -135,7 +144,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
 
 createRoot(document.getElementById("root")).render(
   <AuthProvider>

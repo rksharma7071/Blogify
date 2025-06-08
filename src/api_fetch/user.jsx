@@ -1,3 +1,5 @@
+import { getAllPost } from "./post";
+
 // Fetch All Users
 const getAllUser = async () => {
   try {
@@ -40,4 +42,10 @@ const deleteUserWithId = async (userId) => {
   }
 };
 
-export { getAllUser, getUserWithId, deleteUserWithId };
+const getPostByUser = async (userId) => {
+  const posts = await getAllPost();
+  console.log(posts.postsData);
+  return posts.postsData.filter((post) => post.author_id._id === userId);
+};
+
+export { getAllUser, getUserWithId, deleteUserWithId, getPostByUser };

@@ -8,7 +8,6 @@ import { AuthContext } from "../../context/AuthContext";
 import { MdLogout } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 
-
 function Header() {
   const { isLoggedIn, logout } = useContext(AuthContext);
 
@@ -59,7 +58,7 @@ function Header() {
         </div> */}
           {!isLoggedIn && (
             <div className="fr-header-menu-item">
-              <Link to={"/signIn"}>
+              <Link to={"/signin"}>
                 <MdLogin className="fr-header-icon" />
                 <span className="fr-header-label">Sign In</span>
               </Link>
@@ -74,7 +73,7 @@ function Header() {
                 </Link>
               </div> */}
               <div className="fr-header-menu-item">
-                <Link onClick={logout}>
+                <Link to={"/profile"}>
                   <FaUser className="fr-header-icon" />
                   <span className="fr-header-label">Profile</span>
                 </Link>
