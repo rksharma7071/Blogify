@@ -15,56 +15,71 @@ function Profile() {
     navigate("/");
   };
 
-  console.log(posts);
-
   useEffect(() => {
-  const fetchUserAndPosts = async () => {
-    const userString = localStorage.getItem("user");
-    if (!userString) return navigate("/signIn");
+    const fetchUserAndPosts = async () => {
+      const userString = localStorage.getItem("user");
+      if (!userString) return navigate("/signIn");
 
-    try {
-      const parsedUser = JSON.parse(userString);
-      setUser(parsedUser);
+      try {
+        const parsedUser = JSON.parse(userString);
+        setUser(parsedUser);
 
-      const userPosts = await getPostByUser(parsedUser._id); // ⬅️ use _id not id
-      console.log(userPosts)
-      setPosts(userPosts);
-    } catch (e) {
-      console.error("Failed to load user or posts", e);
-    }
-  };
+        const userPosts = await getPostByUser(parsedUser._id);
+        setPosts(userPosts);
+      } catch (e) {
+        console.error("Failed to load user or posts", e);
+      }
+    };
 
-  fetchUserAndPosts();
-}, []);
-
+    fetchUserAndPosts();
+  }, []);
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-900">
-        Profile
-      </h1>
+    <div className="max-w-4xl mx-auto mt-10 px-6">
+      <div className="bg-white rounded-2xl shadow-md p-6">
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+          Profile
+        </h1>
 
-      {user ? (
-        <div className="space-y-4 text-gray-700">
-          <p>
-            <span className="font-semibold">Username:</span> {user.username}
-          </p>
-          <p>
-            <span className="font-semibold">Name:</span> {user.first_name}{" "}
-            {user.last_name}
-          </p>
-          <p>
-            <span className="font-semibold">Email:</span> {user.email}
-          </p>
-          <p>
-            <span className="font-semibold">Role:</span> {user.role || "N/A"}
-          </p>
-          <p onClick={handleLogout}>Logout</p>
-        </div>
-      ) : (
-        <p className="text-center text-gray-500">Loading user data...</p>
-      )}
-      <UserPosts />
+        {user ? (
+          <div className="space-y-4 text-gray-700">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <p>
+                <span className="font-semibold text-gray-600">Username:</span>{" "}
+                {user.username}
+              </p>
+              <p>
+                <span className="font-semibold text-gray-600">Name:</span>{" "}
+                {user.first_name} {user.last_name}
+              </p>
+              <p>
+                <span className="font-semibold text-gray-600">Email:</span>{" "}
+                {user.email}
+              </p>
+              <p>
+                <span className="font-semibold text-gray-600">Role:</span>{" "}
+                {user.role || "N/A"}
+              </p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="mt-4 inline-block bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded shadow-sm transition"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <p className="text-center text-gray-500">Loading user data...</p>
+        )}
+      </div>
+
+      {/* User Posts */}
+      <div className="mt-10">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800 text-center">
+          My Posts
+        </h2>
+        <UserPosts posts={posts} />
+      </div>
     </div>
   );
 }

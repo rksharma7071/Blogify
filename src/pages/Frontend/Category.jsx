@@ -6,16 +6,29 @@ function FCategory() {
   const [categories, setCategories] = useState(loaderData.data || []);
 
   return (
-    <div>
-      <h1>Category</h1>
-      <ul>
-        {categories &&
-          categories.map((category, index) => (
+    <div className="max-w-5xl mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+        Categories
+      </h1>
+
+      {categories.length > 0 ? (
+        <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {categories.map((category, index) => (
             <li key={index}>
-              <Link to={category.name}>{category.name}</Link>
+              <Link
+                to={`/${category.name}`}
+                className="block bg-white rounded-lg shadow hover:shadow-md transition p-4 text-center border border-gray-100 hover:bg-blue-50"
+              >
+                <span className="text-lg font-medium text-blue-600">
+                  {category.name}
+                </span>
+              </Link>
             </li>
           ))}
-      </ul>
+        </ul>
+      ) : (
+        <p className="text-center text-gray-500 mt-10">No categories found.</p>
+      )}
     </div>
   );
 }

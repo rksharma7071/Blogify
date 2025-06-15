@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import CommentForm from "../components/CommentForm";
 import CommentTable from "../components/CommentTable";
-import {getAllComment} from "../api_fetch/comment";
-
+import { getAllComment } from "../api_fetch/comment";
 
 function Comment() {
   const { commentsData, usersData, postsData } = useLoaderData();
@@ -26,7 +25,7 @@ function Comment() {
   };
 
   return (
-    <div>
+    <div className="max-w-6xl mx-auto p-4 space-y-8">
       <CommentForm
         commentsData={comments}
         usersData={usersData}

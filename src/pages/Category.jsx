@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import CategoryForm from "../components/CategoryForm";
 import CategoryTable from "../components/CategoryTable";
-import {getAllCategory} from "../api_fetch/category";
+import { getAllCategory } from "../api_fetch/category";
 
 function Category() {
   const loaderData = useLoaderData();
@@ -16,9 +16,12 @@ function Category() {
   if (!categories) return <h1>Loading...</h1>;
 
   return (
-    <div>
+    <div className="max-w-5xl mx-auto p-4 space-y-8">
       <CategoryForm refreshCategories={refreshCategories} />
-      <CategoryTable refreshCategories={refreshCategories} categories={categories} />
+      <CategoryTable
+        refreshCategories={refreshCategories}
+        categories={categories}
+      />
     </div>
   );
 }

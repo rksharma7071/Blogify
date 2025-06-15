@@ -1,3 +1,5 @@
+@import "tailwindcss";
+/* 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
 
 :root {
@@ -14,9 +16,9 @@
   --color-prussian-blue-rgb: 2, 48, 71;
   --color-selective-yellow-rgb: 255, 183, 3;
   --color-ut-orange-rgb: 251, 133, 0;
-  --color-dark-text: #1A1A1A;  /* Dark color for text */
-  --color-dark-link: #0D2D44;  /* Darker shade for links */
-  --color-dark-icon: #0B1D30;  /* Dark color for icons */
+  --color-dark-text: #1A1A1A;
+  --color-dark-link: #0D2D44;
+  --color-dark-icon: #0B1D30;
 }
 
 * {
@@ -28,14 +30,14 @@
 
 body {
   font-size: 14px;
-  color: var(--color-dark-text);  /* Dark text color */
+  color: var(--color-dark-text);
   background-color: var(--color-body);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin-bottom: 8px;
-  color: var(--color-dark-text);  /* Dark text for headers */
+  color: var(--color-dark-text); 
 }
 
 h1 { font-size: 28px; }
@@ -46,13 +48,12 @@ h5 { font-size: 14px; }
 h6 { font-size: 12px; }
 
 a {
-  color: var(--color-blue);  /* Darker link color */
+  color: var(--color-blue);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--color-blue-dark);  /* Darker link color */
-  /* color: var(--color-ut-orange); */
+  color: var(--color-blue-dark); 
 }
 
 button {
@@ -96,7 +97,6 @@ input, textarea, select {
 }
 
 input:focus, textarea:focus, select:focus {
-  /* border-color: var(--color-blue-green); */
   box-shadow: 0 0 0 2px var(--color-body);
   outline: none;
 }
@@ -160,7 +160,6 @@ thead th, tbody td {
 }
 
 tbody tr:nth-child(even) {
-  /* background-color: #fff; */
 }
 
 tbody tr:hover {
@@ -180,17 +179,14 @@ tbody tr:hover {
   background-color: rgba(var(--color-ut-orange-rgb), 0.1);
 }
 
-/* Sticky Header */
 header {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: #fff ;
   
-  /* border-bottom: 1px solid var(--color-blue-green); */
 }
 
-/* Header Layout */
 .fr-header {
   max-width: 1200px;
   margin: auto;
@@ -200,13 +196,11 @@ header {
   padding: 4px 24px;
 }
 
-/* Logo */
 .fr-header-logo h1 {
   font-size: 22px;
   color: var(--color-dark-text);
 }
 
-/* Menu */
 .fr-header-menu {
   display: flex;
   gap: 16px;
@@ -230,7 +224,7 @@ header {
 
 .fr-header-icon {
   font-size: 18px;
-  color: var(--color-dark-icon); /* Dark icon color */
+  color: var(--color-dark-icon);
 }
 
 .fr-header-label {
@@ -238,7 +232,6 @@ header {
   color: #555;
 }
 
-/* Search */
 .fr-header-search {
   flex: 1;
   margin: 0 16px;
@@ -250,14 +243,13 @@ header {
   width: 100%;
   max-width: 280px;
   padding: 8px 12px;
-  /* border: 1px solid #ddd; */
+
   border-radius: 6px;
   font-size: 14px;
   background-color: var(--color-body);
 }
 
 .fr-header-input:focus {
-  /* border-color: var(--color-blue-green); */
   box-shadow: 0 0 0 2px var(--color-body), 0.2;
 }
 
@@ -289,9 +281,6 @@ header {
   }
 }
 
-
-
-/* Add Button */
 .add-btn {
   background-color: var(--color-blue);
   color: white;
@@ -307,7 +296,6 @@ header {
   background-color: var(--color-blue-dark);
 }
 
-/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -321,7 +309,6 @@ header {
   z-index: 1000;
 }
 
-/* Modal Content */
 .modal-content {
   background: #fff;
   padding: 30px;
@@ -331,7 +318,6 @@ header {
   position: relative;
 }
 
-/* Close Button */
 .close-btn {
   position: absolute;
   top: 10px;
@@ -358,10 +344,10 @@ header {
 }
 
 .toast.error {
-  background: #f44336; /* Red for error */
+  background: #f44336;
 }
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
-}
+} */

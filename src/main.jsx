@@ -30,20 +30,39 @@ import Signup from "./pages/Frontend/Signup.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import Profile from "./pages/Frontend/Profile.jsx";
 import AuthRedirect from "./context/AuthRedirect.jsx";
+import BlogById from "./components/frontend/BlogById.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Base />,
     errorElement: <h1>Page not found</h1>,
     children: [
+      // {
+      //   index: true,
+      //   element: <Home />,
+      // },
       {
-        index: true,
-        element: <Home />,
+        path: '',
+        element: <Blogs />,
+        loader: getAllPost,
       },
       {
         path: "blogs",
         element: <Blogs />,
         loader: getAllPost,
+      },
+      {
+        path: "blogs/:id",
+        element: <BlogById />,
+        loader: async ({ params }) => {
+          try {
+            return await getPostWithId({ params });
+          } catch (err) {
+            throw new Response("Post not found", { status: 404 });
+          }
+        },
+        errorElement: <h2>Post not found</h2>,
       },
       {
         path: "category",

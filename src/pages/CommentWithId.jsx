@@ -12,22 +12,33 @@ function CommentWithId() {
 
   const getUserName = (userId) => {
     const user = usersData.find((user) => user._id === userId);
-    const full_name = user?.first_name;
-    return user ? full_name : "Unknown User";
+    return user ? `${user.first_name} ${user.last_name}` : "Unknown User";
   };
 
   return (
-    <div>
-      <h1>Comment: {_id}</h1>
-      <p>
-        Post Id: <strong>{getPostTitle(post_id)}</strong>
-      </p>
-      <p>
-        User Id: <strong>{getUserName(user_id)}</strong>
-      </p>
-      <p>
-        Content: <strong>{content}</strong>
-      </p>
+    <div className="max-w-xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md border border-gray-200">
+      <h1 className="text-2xl font-bold text-gray-800 mb-4">
+        Comment Details
+      </h1>
+
+      <div className="space-y-3 text-gray-700">
+        <p>
+          <span className="font-medium text-gray-600">Comment ID:</span>{" "}
+          <span className="text-gray-900">{_id}</span>
+        </p>
+        <p>
+          <span className="font-medium text-gray-600">Post:</span>{" "}
+          <span className="text-gray-900">{getPostTitle(post_id)}</span>
+        </p>
+        <p>
+          <span className="font-medium text-gray-600">User:</span>{" "}
+          <span className="text-gray-900">{getUserName(user_id)}</span>
+        </p>
+        <p>
+          <span className="font-medium text-gray-600">Content:</span>{" "}
+          <span className="text-gray-900">{content}</span>
+        </p>
+      </div>
     </div>
   );
 }

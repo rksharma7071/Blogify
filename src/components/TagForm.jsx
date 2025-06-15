@@ -22,6 +22,7 @@ function TagForm({ refreshTags, showToast, initialData }) {
         // Edit Mode
         await axios.patch(`/api/tags/${initialData._id}`, tag);
         showToast("Tag updated successfully!", "success");
+        
       } else {
         // Add Mode
         await axios.post("/api/tags", tag);
@@ -40,10 +41,17 @@ function TagForm({ refreshTags, showToast, initialData }) {
 
   return (
     <div>
-      <h1>{initialData ? "Edit Tag" : "Create New Tag"}</h1>
-      <form onSubmit={handleSubmit}>
+      <h2 className="text-xl font-semibold mb-4">
+        {initialData ? "Edit Tag" : "Create New Tag"}
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name">Name</label>
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Name
+          </label>
           <input
             type="text"
             name="name"
@@ -51,10 +59,16 @@ function TagForm({ refreshTags, showToast, initialData }) {
             onChange={handleChange}
             value={tag.name}
             required
+            className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
-        <div>
-          <button type="submit">{initialData ? "Update" : "Submit"}</button>
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            {initialData ? "Update" : "Submit"}
+          </button>
         </div>
       </form>
     </div>

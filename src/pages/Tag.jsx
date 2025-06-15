@@ -40,17 +40,25 @@ function Tag() {
   };
 
   return (
-    <div>
+    <div className="max-w-5xl mx-auto p-4">
       {/* Add Tag Button */}
-      <button className="add-btn" onClick={handleOpenModal}>
-        + Add Tag
-      </button>
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={handleOpenModal}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          + Add Tag
+        </button>
+      </div>
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <button className="close-btn" onClick={handleCloseModal}>
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg p-6 shadow-md w-full max-w-md relative">
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl"
+            >
               ✖
             </button>
             <TagForm
@@ -59,17 +67,18 @@ function Tag() {
                 handleCloseModal();
               }}
               showToast={showToast}
-              initialData={editTagData} // pass data when editing
+              initialData={editTagData}
             />
           </div>
         </div>
       )}
 
+      {/* Tag Table */}
       <TagTable
         refreshTags={refreshTags}
         tags={tags}
         showToast={showToast}
-        onEditTag={handleEditTag} // pass edit handler
+        onEditTag={handleEditTag}
       />
 
       {/* Toast Popup */}

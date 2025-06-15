@@ -17,49 +17,61 @@ function PostTable({ refreshPosts, posts }) {
   };
 
   return (
-    <>
-      <h1>All Posts</h1>
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>S.No.</th>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Author</th>
-            <th>Category</th>
-            <th>Tags</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {posts.map((post, index) => (
-            <tr key={post._id}>
-              <td>{index + 1}</td>
-              <td>{post._id}</td>
-              <td>
-                <strong>
-                  <Link to={post._id}>{post.title}</Link>
-                </strong>
-              </td>
-              <td>{post.content}</td>
-              <td>{post.author_id?.username}</td>
-              <td>{post.category_id?.name}</td>
-              <td>
-                {post.tags.map((tag) => (
-                  <span key={tag._id}>{tag.name}, </span>
-                ))}
-              </td>
-              <td>
-                <button onClick={() => handleDeletePost(post._id)}>
-                  Delete
-                </button>
-              </td>
+    <div className="max-w-7xl mx-auto mt-8">
+      <h1 className="text-2xl font-bold text-gray-700 mb-4">All Posts</h1>
+      <div className="overflow-auto rounded-lg shadow">
+        <table className="min-w-full bg-white text-left border border-gray-200">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="px-4 py-2 border-b">S.No.</th>
+              {/* <th className="px-4 py-2 border-b">ID</th> */}
+              <th className="px-4 py-2 border-b">Title</th>
+              <th className="px-4 py-2 border-b">Content</th>
+              <th className="px-4 py-2 border-b">Author</th>
+              <th className="px-4 py-2 border-b">Category</th>
+              <th className="px-4 py-2 border-b">Tags</th>
+              <th className="px-4 py-2 border-b">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+          </thead>
+          <tbody>
+            {posts.map((post, index) => (
+              <tr key={post._id} className="hover:bg-gray-50">
+                <td className="px-4 py-2 border-b">{index + 1}</td>
+                {/* <td className="px-4 py-2 border-b text-sm text-gray-500">
+                  {post._id}
+                </td> */}
+                <td className="px-4 py-2 border-b text-blue-600 font-semibold">
+                  <Link to={post._id}>{post.title}</Link>
+                </td>
+                <td className="px-4 py-2 border-b">{post.content}</td>
+                <td className="px-4 py-2 border-b">
+                  {post.author_id?.username}
+                </td>
+                <td className="px-4 py-2 border-b">{post.category_id?.name}</td>
+                <td className="px-4 py-2 border-b">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag._id}
+                      className="inline-block text-xs bg-gray-200 px-2 py-1 rounded mr-1"
+                    >
+                      {tag.name}
+                    </span>
+                  ))}
+                </td>
+                <td className="px-4 py-2 border-b">
+                  <button
+                    onClick={() => handleDeletePost(post._id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 

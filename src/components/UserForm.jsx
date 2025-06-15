@@ -19,7 +19,6 @@ function UserForm({ refreshUsers }) {
     try {
       await axios.post("/api/auth/signup", userData);
       await refreshUsers();
-      
       setUser({
         username: "",
         first_name: "",
@@ -42,62 +41,38 @@ function UserForm({ refreshUsers }) {
   };
 
   return (
-    <div>
-      <h1>Create New User</h1>
-      <form onSubmit={handleUserForm}>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="first_name">First Name</label>
-          <input
-            type="text"
-            id="first_name"
-            name="first_name"
-            value={user.first_name}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="last_name">Last Name</label>
-          <input
-            type="text"
-            id="last_name"
-            name="last_name"
-            value={user.last_name}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
+    <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md mt-6">
+      <h1 className="text-2xl font-bold mb-6 text-gray-700">Create New User</h1>
+      <form onSubmit={handleUserForm} className="space-y-4">
+        {[
+          ["username", "Username", "text"],
+          ["password", "Password", "password"],
+          ["first_name", "First Name", "text"],
+          ["last_name", "Last Name", "text"],
+          ["email", "Email", "email"],
+        ].map(([name, label, type]) => (
+          <div key={name}>
+            <label htmlFor={name} className="block mb-1 text-sm font-medium">
+              {label}
+            </label>
+            <input
+              type={type}
+              id={name}
+              name={name}
+              value={user[name]}
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-2 rounded-md focus:ring focus:ring-blue-300"
+              required
+            />
+          </div>
+        ))}
+
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
