@@ -36,6 +36,8 @@ import ProDashboard from "./pages/Frontend/Profile/Dashboard.jsx";
 import ChangePassword from "./pages/Frontend/Profile/ChangePassword.jsx";
 import MyBlog from "./pages/Frontend/Profile/MyBlog.jsx";
 import WriteBlog from "./pages/Frontend/Profile/WriteBlog.jsx";
+import Notification from "./pages/Frontend/Profile/Notification.jsx";
+import Settings from "./pages/Frontend/Profile/Settings.jsx";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +95,14 @@ const router = createBrowserRouter([
           {
             path: "writeBlog",
             element: <WriteBlog />
+          },
+          {
+            path: "notification",
+            element: <Notification />
+          },
+          {
+            path: "settings",
+            element: <Settings />
           },
           {
             path: "change-password",
