@@ -70,12 +70,12 @@ function ProDashboard() {
                 )}
             </div>
             {/* User Posts */}
-            <div className="mt-10">
+            {/* <div className="mt-10">
                 <h2 className="text-2xl font-semibold mb-4 text-gray-800 text-center">
                     My Posts
                 </h2>
                 {posts && <UserPosts posts={posts} />}
-            </div>
+            </div> */}
         </>
     )
 }

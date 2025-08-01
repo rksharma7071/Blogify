@@ -37,14 +37,14 @@ function UserPosts({ posts: initialPosts }) {
   console.log("User Posts: ", posts)
 
   return (
-    <div className="bg-white border border-gray-200 p-4">
+    <div className="bg-white border border-gray-200">
       {posts.length === 0 ? (
         <div className="text-gray-500 text-center py-4">No posts found.</div>
       ) : (
         posts.map((post, index) => (
           <div
             key={post._id}
-            className="p-2 flex items-center justify-between border-b border-gray-100 text-gray-700"
+            className="p-3 flex items-center justify-between border-b border-gray-100 text-gray-700"
           >
             <div className="flex items-center gap-4">
               <div className="text-sm font-medium text-gray-500">{index + 1}</div>

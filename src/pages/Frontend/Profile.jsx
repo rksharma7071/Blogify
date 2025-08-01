@@ -38,12 +38,15 @@ function Profile() {
 
   // console.log("All Posts: ", posts);
   return (
-    <div className="flex h-full overflow-hidden">
-      <ProfileHeader handleLogout={handleLogout} />
-      <div className="w-full mx-auto p-6 bg-gray-100">
-        <Outlet />
+    <>
+      
+      <div className="flex h-full">
+        <ProfileHeader handleLogout={handleLogout} />
+        <div className="w-full mx-auto p-6 bg-gray-100">
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

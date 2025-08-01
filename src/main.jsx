@@ -34,6 +34,8 @@ import BlogById from "./components/frontend/BlogById.jsx";
 import Account from "./pages/Frontend/Profile/Account.jsx";
 import ProDashboard from "./pages/Frontend/Profile/Dashboard.jsx";
 import ChangePassword from "./pages/Frontend/Profile/ChangePassword.jsx";
+import MyBlog from "./pages/Frontend/Profile/MyBlog.jsx";
+import WriteBlog from "./pages/Frontend/Profile/WriteBlog.jsx";
 
 const router = createBrowserRouter([
   {
@@ -77,12 +79,20 @@ const router = createBrowserRouter([
         element: <Profile />,
         children: [
           {
+            path: "",
+            element: <ProDashboard />
+          },
+          {
             path: "account",
             element: <Account />
           },
           {
-            path: "dashboard",
-            element: <ProDashboard />
+            path: "myBlog",
+            element: <MyBlog />
+          },
+          {
+            path: "writeBlog",
+            element: <WriteBlog />
           },
           {
             path: "change-password",
