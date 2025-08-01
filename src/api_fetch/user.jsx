@@ -44,7 +44,7 @@ const deleteUserWithId = async (userId) => {
 
 const getPostByUser = async (userId) => {
   const posts = await getAllPost();
-  console.log(posts.postsData);
+  // console.log(posts.postsData);
   return posts.postsData.filter((post) => post.author_id._id === userId);
 };
 

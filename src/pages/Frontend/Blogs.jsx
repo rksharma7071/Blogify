@@ -20,6 +20,7 @@ function Blogs() {
     setPosts(updatedPostData.postsData || []);
   };
 
+  // console.log(posts);
   if (!posts) return <h1 className="text-center text-2xl mt-10">Loading...</h1>;
 
   return (
@@ -55,7 +56,7 @@ function Blogs() {
 
                 {/* Title */}
                 <h3 className="text-xl font-semibold text-gray-800">
-                  <Link to={`${post._id}`} className="hover:underline">
+                  <Link to={`${post.slug}`} className="hover:underline">
                     {post.title}
                   </Link>
                 </h3>

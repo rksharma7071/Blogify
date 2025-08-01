@@ -41,9 +41,9 @@ function PostTable({ refreshPosts, posts }) {
                   {post._id}
                 </td> */}
                 <td className="px-4 py-2 border-b text-blue-600 font-semibold">
-                  <Link to={post._id}>{post.title}</Link>
+                  <Link to={post.slug}>{post.title}</Link>
                 </td>
-                <td className="px-4 py-2 border-b">{post.content}</td>
+                <td className="px-4 py-2 border-b">{post.content.slice(0, 50)}...</td>
                 <td className="px-4 py-2 border-b">
                   {post.author_id?.username}
                 </td>
@@ -60,7 +60,7 @@ function PostTable({ refreshPosts, posts }) {
                 </td>
                 <td className="px-4 py-2 border-b">
                   <button
-                    onClick={() => handleDeletePost(post._id)}
+                    onClick={() => handleDeletePost(post.slug)}
                     className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                   >
                     Delete

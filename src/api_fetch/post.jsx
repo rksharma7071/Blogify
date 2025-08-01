@@ -36,10 +36,12 @@ const getAllPost = async () => {
 
 const getPostWithId = async (postId) => {
   try {
-    postId = postId.params.id;
+    postId = postId.params.slug;
+    // console.log("postId", postId);
+
     const { categoriesData, usersData, postsData } = await getAllPost();
 
-    const post = postsData.find((post) => post._id === postId);
+    const post = postsData.find((post) => post.slug === postId);
     if (!post) throw new Error("Post not found");
 
     const postWithDetails = {
@@ -47,7 +49,7 @@ const getPostWithId = async (postId) => {
       author_id: post.author_id,
       category_id: post.category_id,
     };
-    
+
     return { data: postWithDetails };
   } catch (error) {
     console.error(error);
@@ -56,6 +58,7 @@ const getPostWithId = async (postId) => {
 };
 
 const deletePostWithId = async (postId) => {
+  console.log(postId)
   try {
     const response = await fetch(`/api/posts/${postId}`, {
       method: "DELETE",

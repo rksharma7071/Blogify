@@ -31,6 +31,9 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import Profile from "./pages/Frontend/Profile.jsx";
 import AuthRedirect from "./context/AuthRedirect.jsx";
 import BlogById from "./components/frontend/BlogById.jsx";
+import Account from "./pages/Frontend/Profile/Account.jsx";
+import ProDashboard from "./pages/Frontend/Profile/Dashboard.jsx";
+import ChangePassword from "./pages/Frontend/Profile/ChangePassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +47,7 @@ const router = createBrowserRouter([
       // },
       {
         path: '',
-        element: <Blogs />,
+        element: <Home />,
         loader: getAllPost,
       },
       {
@@ -53,7 +56,7 @@ const router = createBrowserRouter([
         loader: getAllPost,
       },
       {
-        path: "blogs/:id",
+        path: "blogs/:slug",
         element: <BlogById />,
         loader: async ({ params }) => {
           try {
@@ -72,6 +75,20 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+        children: [
+          {
+            path: "account",
+            element: <Account />
+          },
+          {
+            path: "dashboard",
+            element: <ProDashboard />
+          },
+          {
+            path: "change-password",
+            element: <ChangePassword />
+          }
+        ]
       },
       {
         path: "signin",
@@ -116,7 +133,7 @@ const router = createBrowserRouter([
         loader: getAllPost,
       },
       {
-        path: "post/:id",
+        path: "post/:slug",
         element: <PostWithId />,
         loader: getPostWithId,
       },
