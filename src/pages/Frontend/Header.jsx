@@ -58,7 +58,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-white relative z-50 border-b border-gray-200">
+    <header className="bg-white z-50 border-b border-gray-200 sticky top-0">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
         {/* Logo */}
         <div className="flex items-center space-x-4">
