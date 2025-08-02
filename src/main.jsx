@@ -38,6 +38,7 @@ import MyBlog from "./pages/Frontend/Profile/MyBlog.jsx";
 import WriteBlog from "./pages/Frontend/Profile/WriteBlog.jsx";
 import Notification from "./pages/Frontend/Profile/Notification.jsx";
 import Settings from "./pages/Frontend/Profile/Settings.jsx";
+import UpdateBlog from "./pages/Frontend/Profile/UpdateBlog.jsx";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
           {
             path: "writeBlog",
             element: <WriteBlog />
+          },
+          {
+            path: "edit-blog/:id",
+            element: <UpdateBlog />,
           },
           {
             path: "notification",

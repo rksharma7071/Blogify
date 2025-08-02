@@ -28,7 +28,7 @@ function MyBlog() {
         fetchUserAndPosts();
     }, []);
 
-    console.log(posts)
+    // console.log(posts)
 
     return (
         <div className='bg-white p-6'>

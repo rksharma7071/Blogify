@@ -34,7 +34,7 @@ function UserPosts({ posts: initialPosts }) {
     }
   };
   
-  console.log("User Posts: ", posts)
+  // console.log("User Posts: ", posts)
 
   return (
     <div className="bg-white border border-gray-200">

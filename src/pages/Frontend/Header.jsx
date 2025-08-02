@@ -58,7 +58,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-white relative z-50 border-b border-gray-200">
+    <header className="bg-white z-50 border-b border-gray-200 sticky top-0">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
         {/* Logo */}
         <div className="flex items-center space-x-4">
@@ -125,13 +125,13 @@ function Header() {
                 <FaUser className="text-lg" />
                 <span className="text-xs">Profile</span>
               </Link>
-              <button
+              {/* <button
                 onClick={logout}
                 className="flex flex-col items-center hover:text-red-600"
               >
                 <MdLogout className="text-lg" />
                 <span className="text-xs">Sign Out</span>
-              </button>
+              </button> */}
             </>
           )}
         </nav>

@@ -39,10 +39,10 @@ function Profile() {
   // console.log("All Posts: ", posts);
   return (
     <>
-      
-      <div className="flex h-full">
+
+      <div className="flex flex-1 overflow-hidden">
         <ProfileHeader handleLogout={handleLogout} />
-        <div className="w-full mx-auto p-6 bg-gray-100">
+        <div className="flex-1 overflow-y-auto p-6 bg-gray-100">
           <Outlet />
         </div>
       </div>

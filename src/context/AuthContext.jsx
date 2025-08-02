@@ -5,9 +5,11 @@ export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
+    
     setIsLoggedIn(!!userString);
   }, []);
 

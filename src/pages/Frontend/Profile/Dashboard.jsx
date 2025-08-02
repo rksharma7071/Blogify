@@ -29,7 +29,7 @@ function ProDashboard() {
         fetchUserAndPosts();
     }, []);
 
-    console.log(posts)
+    // console.log(posts)
 
     return (
         <>
