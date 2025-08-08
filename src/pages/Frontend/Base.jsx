@@ -4,7 +4,7 @@ import Header from './Header';
 
 function Base() {
   return (
-    <div className='bg-gray-100'>
+    <div className='min-h-screen flex flex-col bg-gray-100'>
       <Header />
       <Outlet />
     </div>

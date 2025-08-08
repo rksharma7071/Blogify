@@ -5,11 +5,11 @@ export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
-    
+
     setIsLoggedIn(!!userString);
   }, []);
 
@@ -18,6 +18,10 @@ export function AuthProvider({ children }) {
     localStorage.setItem("token", token);
     setIsLoggedIn(true);
   };
+  const capitalize = (str) => {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -26,7 +30,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, login, logout, capitalize }}>
       {children}
     </AuthContext.Provider>
   );

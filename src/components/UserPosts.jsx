@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { AuthContext } from "../context/AuthContext";
 
 function UserPosts({ posts: initialPosts }) {
+  const { capitalize } = useContext(AuthContext)
+
   const [posts, setPosts] = useState(initialPosts || []);
 
   useEffect(() => {
@@ -33,7 +36,7 @@ function UserPosts({ posts: initialPosts }) {
       console.error("Delete failed:", error);
     }
   };
-  
+
   // console.log("User Posts: ", posts)
 
   return (
@@ -44,11 +47,23 @@ function UserPosts({ posts: initialPosts }) {
         posts.map((post, index) => (
           <div
             key={post._id}
-            className="p-3 flex items-center justify-between border-b border-gray-100 text-gray-700"
+            className="p-3 flex items-center justify-between border-b rounded border-gray-50 text-gray-700 bg-gray-50"
           >
             <div className="flex items-center gap-4">
               <div className="text-sm font-medium text-gray-500">{index + 1}</div>
+              {post.featured_image &&
+                <div className="text-sm font-medium text-gray-500">
+                  <img src={`http://localhost:3000${post.featured_image}`} alt={post.title} className="w-10 aspect-square object-contain" />
+                </div>
+              }
               <div className="text-md font-semibold">{post.title}</div>
+              <div
+                className={`px-2 py-1 rounded-full text-xs font-medium ${post.status === "published"
+                  ? "bg-green-100 text-green-700"
+                  : "bg-yellow-100 text-yellow-700"
+                  }`}
+              >{capitalize(post.status)}</div>
+
               <div className="text-sm text-gray-400">
                 {new Date(post.createdAt).toLocaleDateString()}
               </div>

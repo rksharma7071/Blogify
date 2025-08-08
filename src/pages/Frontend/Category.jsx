@@ -17,7 +17,7 @@ function FCategory() {
             <li key={index}>
               <Link
                 to={`/${category.name}`}
-                className="block bg-white rounded-lg shadow hover:shadow-md transition p-4 text-center border border-gray-100 hover:bg-blue-50"
+                className="block bg-white shadow-sm hover:shadow-md transition p-4 text-center border border-gray-100"
               >
                 <span className="text-lg font-medium text-blue-600">
                   {category.name}

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 function WriteBlog() {
     const user = JSON.parse(localStorage.getItem("user"));
-
+    const [prevdata, setPrevData] = useState("");
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]);
 
@@ -113,20 +113,42 @@ function WriteBlog() {
             }
 
             // ✅ Step 3: Build FormData
-            data = {
-                title: post.title,
-                content: post.content,
-                author_id: post.author_id,
-                category_id: categoryId,
-                status: post.status,
-                slug: slug,
-                featured_image: post.featured_image,
-                tags: tagIds,
-            };
+            // data = {
+            //     title: post.title,
+            //     content: post.content,
+            //     author_id: post.author_id,
+            //     category_id: categoryId,
+            //     status: post.status,
+            //     slug: slug,
+            //     featured_image: post.featured_image,
+            //     tags: tagIds,
+            // };
+            formData.append("title", post.title);
+            formData.append("content", post.content);
+            formData.append("author_id", post.author_id);
+            formData.append("category_id", categoryId);
+            formData.append("status", post.status);
+            formData.append("slug", slug);
+            formData.append("tags", JSON.stringify(tagIds));
 
+            // tagIds.forEach(tagId => {
+            //     formData.append("tags", tagId); // ✅ send as repeated keys
+            // });
+            if (post.featured_image) {
+                formData.append("featured_image", post.featured_image);
+            }
+            for (let pair of formData.entries()) {
+                console.log(`${pair[0]}:`, pair[1]);
+            }
+            // console.log("✅ Before Post:", data);
+
+            // setPrevData(JSON.stringify(data));
             // ✅ Step 4: Submit post
-            const res = await axios.post("http://localhost:3000/posts", data);
-
+            const res = await axios.post("http://localhost:3000/posts", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
             console.log("✅ Post created:", res.data);
 
             // ✅ Reset form
@@ -153,8 +175,10 @@ function WriteBlog() {
     return (
         <div className="bg-white p-6">
             <h1 className="text-2xl mb-6 text-gray-800">Write a Blog</h1>
-
-            <form className="max-w-xl mx-auto bg-white p-6" onSubmit={handlePost}>
+            {prevdata &&
+                <div>{prevdata}</div>
+            }
+            <form className="max-w-xl mx-auto bg-white p-6" onSubmit={handlePost} enctype="multipart/form-data">
                 {/* Title */}
                 <div className="pb-4">
                     <label htmlFor="title" className="block mb-2 text-gray-800 font-medium">Title</label>

@@ -14,11 +14,11 @@ function BlogById() {
   } = post.data;
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10 my-10 bg-white shadow-md rounded-2xl">
+    <div className="max-w-3xl mx-auto px-4 py-10 my-10 bg-white shadow-md">
       <img
-        src={featured_image}
+        src={`http://localhost:3000${featured_image}`}
         alt={title}
-        className="w-full h-auto rounded-xl mb-6 object-cover"
+        className="w-full h-auto mb-6 object-cover"
       />
 
       <h1 className="text-3xl font-bold text-gray-800 mb-4">{title}</h1>

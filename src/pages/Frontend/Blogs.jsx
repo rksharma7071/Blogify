@@ -32,13 +32,13 @@ function Blogs() {
           .map((post) => (
             <div
               key={post._id}
-              className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="bg-white shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
             >
               {/* Featured Image */}
               <div className="h-48 bg-gray-200 flex justify-center items-center overflow-hidden">
                 {post.featured_image ? (
                   <img
-                    src={post.featured_image}
+                    src={`http://localhost:3000${post.featured_image}`}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />

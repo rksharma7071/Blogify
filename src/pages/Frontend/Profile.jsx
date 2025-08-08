@@ -39,7 +39,7 @@ function Profile() {
   // console.log("All Posts: ", posts);
   return (
     <>
-
+      
       <div className="flex flex-1 overflow-hidden">
         <ProfileHeader handleLogout={handleLogout} />
         <div className="flex-1 overflow-y-auto p-6 bg-gray-100">

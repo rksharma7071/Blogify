@@ -33,7 +33,7 @@ function Dashboard() {
               <div className="h-48 bg-gray-200 flex justify-center items-center overflow-hidden">
                 {post.featured_image ? (
                   <img
-                    src={post.featured_image}
+                    src={`http://localhost:3000${post.featured_image}`}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />
@@ -53,7 +53,7 @@ function Dashboard() {
 
                 {/* Title */}
                 <h3 className="text-xl font-semibold text-gray-800">
-                  <Link to={`/blogs/${post._id}`} className="hover:underline">
+                  <Link to={`/blogs/${post.slug}`} className="hover:underline">
                     {post.title}
                   </Link>
                 </h3>

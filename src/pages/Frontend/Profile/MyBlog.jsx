@@ -9,7 +9,7 @@ function MyBlog() {
     const [posts, setPosts] = useState([]);
     const { isLoggedIn, logout } = useContext(AuthContext);
     const navigate = useNavigate();
-
+    console.log("Posts: ",posts);
     useEffect(() => {
         const fetchUserAndPosts = async () => {
             const userString = localStorage.getItem("user");
