@@ -6,6 +6,7 @@ function WriteBlog() {
     const [prevdata, setPrevData] = useState("");
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]);
+    const [postTags, setPostTags] = useState([]);
 
     const [post, setPost] = useState({
         title: "",
@@ -112,17 +113,6 @@ function WriteBlog() {
                 tagIds.push(tagRes.data._id || tagRes.data.tag?.id); // supports both cases
             }
 
-            // ✅ Step 3: Build FormData
-            // data = {
-            //     title: post.title,
-            //     content: post.content,
-            //     author_id: post.author_id,
-            //     category_id: categoryId,
-            //     status: post.status,
-            //     slug: slug,
-            //     featured_image: post.featured_image,
-            //     tags: tagIds,
-            // };
             formData.append("title", post.title);
             formData.append("content", post.content);
             formData.append("author_id", post.author_id);

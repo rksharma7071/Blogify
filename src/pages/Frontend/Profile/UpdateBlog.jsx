@@ -5,8 +5,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 function UpdateBlog() {
     const { slug } = useParams();
     const navigate = useNavigate();
+
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     const [post, setPost] = useState({
         title: "",
@@ -18,41 +20,55 @@ function UpdateBlog() {
         slug: ""
     });
 
+    // console.log(post)
+    // console.log("Post: ", post);
     useEffect(() => {
         const fetchPost = async () => {
+            // console.log("Slug: ", slug)
             try {
                 const res = await axios.get(`/api/posts/${slug}`);
                 const blog = res.data;
-                console.log("Blog: ", blog);
+
                 setPost({
                     title: blog.title,
                     content: blog.content,
                     tags: blog.tags || [],
-                    category_id: blog.category_id,
+                    category_id: blog.category_id?.name || "",
                     status: blog.status,
                     featured_image: blog.featured_image,
-                    slug: blog.slug
+                    slug: blog.slug,
+                    // tags: blog.tags || []
                 });
-                setTags(blog.tags || []);
+                const PostTag = blog.tags;
+                blog.tags.forEach(tag => {
+                    setTags(prev => [...prev, tag.name])
+                });
+
             } catch (error) {
                 console.error("Error fetching blog:", error);
             }
         };
 
         fetchPost();
+        // fetchCategories();
     }, [slug]);
+
+    useEffect(() => {
+        // console.log("Tags: ", tags)
+    }, [tags])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setPost((prev) => {
             let updatedPost = { ...prev, [name]: value };
+
             if (name === "title") {
-                const slug = value.toLowerCase().trim()
+                const slugValue = value.toLowerCase().trim()
                     .replace(/[^a-z0-9\s-]/g, "")
                     .replace(/\s+/g, "-")
                     .replace(/-+/g, "-")
                     .replace(/^-+|-+$/g, "");
-                updatedPost.slug = slug;
+                updatedPost.slug = slugValue;
             }
             return updatedPost;
         });
@@ -92,35 +108,74 @@ function UpdateBlog() {
         e.preventDefault();
 
         try {
-            // Optional: Upload new image if it's a file
-            let featuredImageUrl = post.featured_image;
-            if (post.featured_image instanceof File) {
-                const imageForm = new FormData();
-                imageForm.append("image", post.featured_image);
-                const imageRes = await axios.post("/api/upload", imageForm);
-                featuredImageUrl = imageRes.data.url;
+
+            const formData = new FormData();
+
+            // let featuredImageUrl = post.featured_image;
+            // if (post.featured_image instanceof File) {
+            //     const imageForm = new FormData();
+            //     imageForm.append("image", post.featured_image);
+            //     const imageRes = await axios.post("/api/upload", imageForm);
+            //     featuredImageUrl = imageRes.data.url;
+            // }
+
+            const tagIds = [];
+            for (const tag of tags) {
+                const tagRes = await axios.post("http://localhost:3000/tags", {
+                    name: tag
+                });
+                tagIds.push(tagRes.data._id || tagRes.data.tag?.id);
             }
 
-            const updatedPost = {
-                ...post,
-                tags,
-                featured_image: featuredImageUrl
-            };
+            const categoryRes = await axios.post("http://localhost:3000/categories", {
+                name: post.category_id,
+                description: " " // dummy description if not present
+            });
 
-            await axios.put(`/api/posts/${slug}`, updatedPost);
+            const categoryId = categoryRes.data.category.id;
+
+            // const updatedPost = {
+            //     ...post,
+            //     tags: tagIds,
+            //     category_id: categoryId,
+            //     featured_image: featuredImageUrl
+            // };
+            post.category_id = categoryId;
+            post.tags = post.tags.map((tag) => tag._id)
+            formData.append("title", post.title);
+            formData.append("content", post.content);
+            // formData.append("author_id", post.author_id);
+            formData.append("category_id", categoryId);
+            formData.append("status", post.status);
+            post.slug !== slug && formData.append("slug", slug);
+
+            formData.append("tags", JSON.stringify(tagIds));
+            formData.append("featured_image", post.featured_image);
+
+            // console.log("updatedPost: ", updatedPost);
+            // for (let [key, value] of formData.entries()) {
+            //     console.log(`${key}: ${value}`);
+            // }
+            const res = await axios.patch(`/api/posts/${slug}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+            console.log("Post: ", post);
+            console.log("Response: ", res.data);
             alert("Post updated successfully!");
-            navigate("/my-blogs");
+            // navigate("/my-blogs");
         } catch (error) {
             console.error("Error updating blog:", error);
         }
     };
-
+    // console.log(post)
     return (
         <div className="bg-white p-6">
             <h1 className="text-2xl mb-6 text-gray-800">Edit Blog</h1>
 
             <form onSubmit={handleUpdate} className="max-w-xl mx-auto bg-white p-6">
-                {/* Reuse form like WriteBlog */}
+
                 {/* Title */}
                 <div className="pb-4">
                     <label className="block mb-2 text-gray-800 font-medium">Title</label>
@@ -158,11 +213,17 @@ function UpdateBlog() {
                     </div>
                 </div>
 
-                {/* Category */}
+                {/* Category Dropdown */}
                 <div className="pb-4">
-                    <label className="block mb-2 text-gray-800 font-medium">Category</label>
-                    <input type="text" name="category_id" value={post.category_id} onChange={handleChange}
-                        className="block border border-gray-300 w-full p-2 focus:outline-none focus:border-blue-400" />
+                    <label htmlFor="category_id" className="block mb-2 text-gray-800 font-medium">Category</label>
+                    <input
+                        type="text"
+                        id="category_id"
+                        name="category_id"
+                        value={post.category_id}
+                        onChange={handleChange}
+                        className="block border border-gray-300 w-full p-2 focus:outline-none focus:border-blue-400"
+                    />
                 </div>
 
                 {/* Status */}
@@ -178,16 +239,42 @@ function UpdateBlog() {
 
                 {/* Image */}
                 <div className="pb-4">
-                    <label className="block mb-2 text-gray-800 font-medium">Image</label>
-                    <input type="file" onChange={handleFileChange}
-                        className="block border border-gray-300 w-full p-2 focus:outline-none focus:border-blue-400" />
-                    {post.featured_image && !(post.featured_image instanceof File) && (
+                    <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-800">
+                        Upload Image
+                    </label>
+                    <input
+                        type="file"
+                        id="image"
+                        onChange={handleFileChange}
+                        name="featured_image"
+                        className="block border border-gray-300 w-full p-2 focus:outline-none focus:border-blue-400 bg-white text-sm text-gray-900"
+                    />
+                    <p className="mt-1 text-xs text-gray-500">Accepted formats: PNG, JPG, JPEG (max 5MB)</p>
+                    {post.featured_image && (
                         <div className="mt-2">
-                            <img src={post.featured_image} alt="Preview" className="h-32 border border-gray-300 rounded" />
+                            <img
+                                src={post.featured_image instanceof File
+                                    ? URL.createObjectURL(post.featured_image)
+                                    : `http://localhost:3000${post.featured_image}`}
+                                alt="Preview"
+                                className="h-32 rounded border border-gray-300"
+                            />
                         </div>
                     )}
                 </div>
 
+                {/* Slug */}
+                <div className="pb-4">
+                    <label htmlFor="slug" className="block mb-2 text-gray-800 font-medium">Slug</label>
+                    <input
+                        type="text"
+                        id="slug"
+                        name="slug"
+                        value={post.slug}
+                        onChange={handleChange}
+                        className="block border border-gray-300 w-full p-2 focus:outline-none focus:border-blue-400"
+                    />
+                </div>
                 {/* Submit */}
                 <div className="pt-4">
                     <button type="submit"

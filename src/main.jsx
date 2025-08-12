@@ -44,7 +44,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Base />,
-    errorElement: <h1>Page not found</h1>,
+    // errorElement: <h1>Page not found</h1>,
     children: [
       // {
       //   index: true,
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
             throw new Response("Post not found", { status: 404 });
           }
         },
-        errorElement: <h2>Post not found</h2>,
+        // errorElement: <h2>Post not found</h2>,
       },
       {
         path: "category",
@@ -90,15 +90,15 @@ const router = createBrowserRouter([
             element: <Account />
           },
           {
-            path: "myBlog",
+            path: "posts",
             element: <MyBlog />
           },
           {
-            path: "writeBlog",
+            path: "newPost",
             element: <WriteBlog />
           },
           {
-            path: "edit-blog/:id",
+            path: "editPost/:slug",
             element: <UpdateBlog />,
           },
           {
