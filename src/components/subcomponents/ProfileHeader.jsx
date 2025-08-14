@@ -15,7 +15,7 @@ import { DiGoogleAnalytics } from "react-icons/di";
 
 function ProfileHeader({ handleLogout }) {
   return (
-    <div className="bg-white text-gray-800 w-60">
+    <div className="bg-white text-gray-800 w-40">
       {/* <Link to={''} className='flex items-center gap-2 p-4 hover:bg-blue-500 hover:text-white'>
         <FaUser />
         Profile

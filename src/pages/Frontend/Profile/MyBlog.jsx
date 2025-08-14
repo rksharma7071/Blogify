@@ -8,8 +8,11 @@ function MyBlog() {
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState([]);
     const { isLoggedIn, logout } = useContext(AuthContext);
+    const [query, setQuery] = useState("");
+
     const navigate = useNavigate();
-    console.log("Posts: ",posts);
+    
+    
     useEffect(() => {
         const fetchUserAndPosts = async () => {
             const userString = localStorage.getItem("user");
@@ -28,14 +31,21 @@ function MyBlog() {
         fetchUserAndPosts();
     }, []);
 
-    // console.log(posts)
-
     return (
         <div className='bg-white p-6'>
-            <h1 className="text-2xl mb-6 text-gray-800">
-                My Blog
-            </h1>
-            {posts && <UserPosts posts={posts} />}
+            <div className="mb-6 flex items-center justify-between">
+                <h1 className="text-2xl font-semibold text-gray-800">My Blog</h1>
+
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Search blogs..."
+                        className="px-3 py-2 border border-gray-300 focus:outline-none focus:ring-0 text-sm"
+                        onChange={(e)=> setQuery(e.target.value)}
+                    />
+                </div>
+            </div>
+            {posts && <UserPosts posts={posts} query={query} />}
         </div>
     )
 }
