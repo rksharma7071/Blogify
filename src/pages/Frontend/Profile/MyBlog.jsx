@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import UserPosts from '../../../components/UserPosts'
+import UserPosts from '../../../components/admin/UserPosts'
 import { AuthContext } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { getPostByUser } from '../../../api_fetch/user';
@@ -11,8 +11,8 @@ function MyBlog() {
     const [query, setQuery] = useState("");
 
     const navigate = useNavigate();
-    
-    
+
+
     useEffect(() => {
         const fetchUserAndPosts = async () => {
             const userString = localStorage.getItem("user");
@@ -41,7 +41,7 @@ function MyBlog() {
                         type="text"
                         placeholder="Search blogs..."
                         className="px-3 py-2 border border-gray-300 focus:outline-none focus:ring-0 text-sm"
-                        onChange={(e)=> setQuery(e.target.value)}
+                        onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
             </div>

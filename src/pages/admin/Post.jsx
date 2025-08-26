@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import PostForm from "../components/PostForm";
-import PostTable from "../components/PostTable";
-import { getAllPost } from "../api_fetch/post";
+import PostForm from "../../components/admin/PostForm";
+import PostTable from "../../components/admin/PostTable";
+import { getAllPost } from "../../api_fetch/post";
 
 function Post() {
   const { categoriesData, usersData, postsData } = useLoaderData();
@@ -36,8 +36,8 @@ function Post() {
         refreshPosts={refreshPosts}
         usersData={usersData}
         categoriesData={categoriesData}
-        // getUserName={getUserName}
-        // getCategoryTitle={getCategoryTitle}
+      // getUserName={getUserName}
+      // getCategoryTitle={getCategoryTitle}
       />
       <PostTable refreshPosts={refreshPosts} posts={posts} />
     </>

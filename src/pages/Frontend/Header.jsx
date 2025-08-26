@@ -106,11 +106,11 @@ function Header() {
             <IoHomeSharp className="text-lg" />
             <span className="text-xs">Home</span>
           </Link>
-          <Link to="/blogs" className="flex flex-col items-center hover:text-blue-600">
+          {/* <Link to="/blogs" className="flex flex-col items-center hover:text-blue-600">
             <FaBlog className="text-lg" />
             <span className="text-xs">Blogs</span>
-          </Link>
-          <Link to="/category" className="flex flex-col items-center hover:text-blue-600">
+          </Link> */}
+          <Link to="/categories" className="flex flex-col items-center hover:text-blue-600">
             <BiSolidCategoryAlt className="text-lg" />
             <span className="text-xs">Category</span>
           </Link>

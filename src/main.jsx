@@ -2,43 +2,44 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
-import { getAllUser, getUserWithId } from "./api_fetch/user.jsx";
-import User from "./pages/User.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import Post from "./pages/Post.jsx";
-import Tag from "./pages/Tag.jsx";
-import Category from "./pages/Category.jsx";
-import PostTag from "./pages/PostTag.jsx";
-import Comment from "./pages/Comment.jsx";
-import { getAllPost, getPostWithId } from "./api_fetch/post.jsx";
-import { getAllTag, getTagWithId } from "./api_fetch/tag.jsx";
-import { getAllPostTag, getPostTagWithId } from "./api_fetch/postTags.jsx";
-import { getAllCategory, getCategoryWithId } from "./api_fetch/category.jsx";
-import { getAllComment, getCommentWithId } from "./api_fetch/comment.jsx";
-import UserWithId from "./pages/UserWithId.jsx";
-import PostWithId from "./pages/PostWithId.jsx";
-import TagWithId from "./pages/TagWithId.jsx";
-import CategoryWithId from "./pages/CategoryWithId.jsx";
-import PostTagWithId from "./pages/PostTagWithId.jsx";
-import CommentWithId from "./pages/CommentWithId.jsx";
-import Base from "./pages/Frontend/Base.jsx";
-import Home from "./pages/Frontend/Home.jsx";
-import Blogs from "./pages/Frontend/Blogs.jsx";
-import FCategory from "./pages/Frontend/Category.jsx";
-import SignIn from "./pages/Frontend/SignIn.jsx";
-import Signup from "./pages/Frontend/Signup.jsx";
+import User from "./pages/admin/User.jsx";
+import Dashboard from "./pages/admin/Dashboard.jsx";
+import Post from "./pages/admin/Post.jsx";
+import Tag from "./pages/admin/Tag.jsx";
+import Category from "./pages/admin/Category.jsx";
+import PostTag from "./pages/admin/PostTag.jsx";
+import Comment from "./pages/admin/Comment.jsx";
+import { getAllUser, getUserWithId } from "./api_fetch/user";
+import { getAllPost, getPostWithId } from "./api_fetch/post";
+import { getAllTag, getTagWithId } from "./api_fetch/tag.js";
+import { getAllPostTag, getPostTagWithId } from "./api_fetch/postTags";
+import { getAllCategory, getCategoryWithId } from "./api_fetch/category";
+import { getAllComment, getCommentWithId } from "./api_fetch/comment";
+import UserWithId from "./pages/admin/UserWithId.jsx";
+import PostWithId from "./pages/admin/PostWithId.jsx";
+import TagWithId from "./pages/admin/TagWithId.jsx";
+import CategoryWithId from "./pages/admin/CategoryWithId.jsx";
+import PostTagWithId from "./pages/admin/PostTagWithId.jsx";
+import CommentWithId from "./pages/admin/CommentWithId.jsx";
+import Base from "./pages/frontend/Base.jsx";
+import Home from "./pages/frontend/Home.jsx";
+import Blogs from "./pages/frontend/Blogs.jsx";
+import FCategory from "./pages/frontend/Category.jsx";
+import SignIn from "./pages/frontend/SignIn.jsx";
+import Signup from "./pages/frontend/Signup.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
-import Profile from "./pages/Frontend/Profile.jsx";
+import Profile from "./pages/frontend/Profile.jsx";
 import AuthRedirect from "./context/AuthRedirect.jsx";
 import BlogById from "./components/frontend/BlogById.jsx";
-import Account from "./pages/Frontend/Profile/Account.jsx";
-import ProDashboard from "./pages/Frontend/Profile/Dashboard.jsx";
-import ChangePassword from "./pages/Frontend/Profile/ChangePassword.jsx";
-import MyBlog from "./pages/Frontend/Profile/MyBlog.jsx";
-import WriteBlog from "./pages/Frontend/Profile/WriteBlog.jsx";
+import Account from "./pages/frontend/Profile/Account.jsx";
+import ProDashboard from "./pages/frontend/Profile/Dashboard.jsx";
+import ChangePassword from "./pages/frontend/Profile/ChangePassword.jsx";
+import MyBlog from "./pages/frontend/Profile/MyBlog.jsx";
+import WriteBlog from "./pages/frontend/Profile/WriteBlog.jsx";
 import Notification from "./pages/Frontend/Profile/Notification.jsx";
-import Settings from "./pages/Frontend/Profile/Settings.jsx";
-import UpdateBlog from "./pages/Frontend/Profile/UpdateBlog.jsx";
+import Settings from "./pages/frontend/Profile/Settings.jsx";
+import UpdateBlog from "./pages/frontend/Profile/UpdateBlog.jsx";
+import SocialLinks from "./pages/frontend/Profile/SocialLinks.jsx";
 
 const router = createBrowserRouter([
   {
@@ -73,9 +74,14 @@ const router = createBrowserRouter([
         // errorElement: <h2>Post not found</h2>,
       },
       {
-        path: "category",
+        path: "categories",
         element: <FCategory />,
-        loader: getAllCategory,
+        loader: getAllPost,
+      },
+      {
+        path: "categories/:slug",
+        element: <FCategory />,
+        loader: getAllPost,
       },
       {
         path: "profile",
@@ -104,6 +110,10 @@ const router = createBrowserRouter([
           {
             path: "notification",
             element: <Notification />
+          },
+          {
+            path: "social-links",
+            element: <SocialLinks />
           },
           {
             path: "settings",

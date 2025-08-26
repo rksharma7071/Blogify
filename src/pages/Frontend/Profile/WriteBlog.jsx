@@ -168,7 +168,7 @@ function WriteBlog() {
             {prevdata &&
                 <div>{prevdata}</div>
             }
-            <form className="max-w-xl mx-auto bg-white p-6" onSubmit={handlePost} enctype="multipart/form-data">
+            <form className="max-w-xl mx-auto bg-white p-6" onSubmit={handlePost} encType="multipart/form-data">
                 {/* Title */}
                 <div className="pb-4">
                     <label htmlFor="title" className="block mb-2 text-gray-800 font-medium">Title</label>

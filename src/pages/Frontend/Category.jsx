@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
 function FCategory() {
-  const loaderData = useLoaderData();
-  const [categories, setCategories] = useState(loaderData.data || []);
+  // const loaderData = useLoaderData();
+  const { categoriesData, usersData, postsData } = useLoaderData();
+  const [posts, setPosts] = useState(postsData);
+  console.log(categoriesData);
+  const getAllCategory = posts.map((post) => post.category_id);
+  const [categories, setCategories] = useState(getAllCategory);
+  console.log("posts:", posts);
+
+  console.log("getAllCategory: ", categories);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
@@ -16,7 +23,7 @@ function FCategory() {
           {categories.map((category, index) => (
             <li key={index}>
               <Link
-                to={`/${category.name}`}
+                to={`/categories/${category.name}`}
                 className="block bg-white shadow-sm hover:shadow-md transition p-4 text-center border border-gray-100"
               >
                 <span className="text-lg font-medium text-blue-600">

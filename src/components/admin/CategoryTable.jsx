@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { deleteCategoryWithId } from "../api_fetch/category";
+import { deleteCategoryWithId } from "../../api_fetch/category";
 
 function CategoryTable({ refreshCategories, categories }) {
   const handleDeleteCategory = async (id) => {

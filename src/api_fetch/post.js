@@ -58,7 +58,7 @@ const getPostWithId = async (postId) => {
 };
 
 const deletePostWithId = async (postId) => {
-  console.log(postId)
+  console.log(postId);
   try {
     const response = await fetch(`/api/posts/${postId}`, {
       method: "DELETE",

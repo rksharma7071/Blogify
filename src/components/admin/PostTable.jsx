@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { deleteUserWithId } from "../api_fetch/user";
-import { deletePostWithId } from "../api_fetch/post";
+import { deleteUserWithId } from "../../api_fetch/user";
+import { deletePostWithId } from "../../api_fetch/post";
 
 function PostTable({ refreshPosts, posts }) {
   const handleDeletePost = async (id) => {

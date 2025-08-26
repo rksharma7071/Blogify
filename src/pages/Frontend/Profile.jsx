@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import UserPosts from "../../components/UserPosts";
+import UserPosts from "../../components/admin/UserPosts";
 import { getPostByUser } from "../../api_fetch/user";
-import ProfileHeader from "../../components/subcomponents/ProfileHeader";
+import ProfileHeader from "../../components/frontend/ProfileHeader";
 import Dashboard from "./Profile/Dashboard";
 
 function Profile() {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import CategoryForm from "../components/CategoryForm";
-import CategoryTable from "../components/CategoryTable";
-import { getAllCategory } from "../api_fetch/category";
+import CategoryForm from "../../components/admin/CategoryForm";
+import CategoryTable from "../../components/admin/CategoryTable";
+import { getAllCategory } from "../../api_fetch/category";
 
 function Category() {
   const loaderData = useLoaderData();

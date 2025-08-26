@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { deleteCommentWithId } from "../api_fetch/comment";
+import { deleteCommentWithId } from "../../api_fetch/comment";
 
 function CommentTable({
   refreshComments,

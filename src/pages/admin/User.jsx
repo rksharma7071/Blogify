@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import UserForm from "../components/UserForm";
-import UserTable from "../components/UserTable";
-import getAllUser from "../api_fetch/user";
+import { getAllUser } from "../../api_fetch/user";
+import UserForm from "../../components/admin/UserForm";
+import UserTable from "../../components/admin/UserTable";
 
-function Home() {
+function User() {
   const loaderData = useLoaderData();
   const [users, setUsers] = useState(loaderData.data || []);
 
@@ -13,15 +13,14 @@ function Home() {
     setUsers(updatedUserData.data || []);
   };
 
-  if (!users) return <h1>Loading...</h1>;
+  if (!users) return <h1 className="text-center text-gray-500 mt-10">Loading...</h1>;
 
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="max-w-5xl mx-auto p-6">
       <UserForm refreshUsers={refreshUsers} />
-      <UserTable users={users} />
+      <UserTable refreshUsers={refreshUsers} users={users} />
     </div>
   );
 }
 
-export default Home;
+export default User;

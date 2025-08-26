@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { getPostByUser } from '../../../api_fetch/user';
-import UserPosts from '../../../components/UserPosts';
+import UserPosts from '../../../components/admin/UserPosts';
 
 function ProDashboard() {
 

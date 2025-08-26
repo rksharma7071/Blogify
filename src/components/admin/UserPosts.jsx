@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 function UserPosts({ posts: initialPosts, query }) {
@@ -78,7 +78,7 @@ function UserPosts({ posts: initialPosts, query }) {
                     <input type="checkbox" name={post.slug} id={post.slug} className="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-0 cursor-pointer" />
                   </td>
                   <td className="p-2 text-sm text-gray-600">
-                    <img src={`http://localhost:3000${post.featured_image}`} alt={post.title} className="w-20 object-cover border border-dashed rounded-lg border-gray-300" />
+                    <img src={post.featured_image} alt={post.title} className="w-20 object-cover border border-dashed rounded-lg border-gray-300" />
                   </td>
                   <td className="p-2 text-sm font-medium text-gray-800">
                     <Link to={`/blogs/${post.slug}`}>{post.title}</Link>

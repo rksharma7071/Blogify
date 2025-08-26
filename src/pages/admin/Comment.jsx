@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import CommentForm from "../components/CommentForm";
-import CommentTable from "../components/CommentTable";
-import { getAllComment } from "../api_fetch/comment";
+import CommentForm from "../../components/admin/CommentForm";
+import CommentTable from "../../components/admin/CommentTable";
+import { getAllComment } from "../../api_fetch/comment";
 
 function Comment() {
   const { commentsData, usersData, postsData } = useLoaderData();

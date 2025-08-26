@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import TagTable from "../components/TagTable";
-import TagForm from "../components/TagForm";
-import { getAllTag } from "../api_fetch/tag";
-import Toast from "../components/Toast";
+import TagTable from "../../components/admin/TagTable";
+import TagForm from "../../components/admin/TagForm";
+import { getAllTag } from "../../api_fetch/tag";
+import Toast from "../../components/admin/Toast";
 
 function Tag() {
   const loaderData = useLoaderData();

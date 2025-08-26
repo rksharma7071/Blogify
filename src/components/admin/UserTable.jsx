@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { deleteUserWithId } from "../api_fetch/user";
+import { deleteUserWithId } from "../../api_fetch/user";
 
 function UserTable({ refreshUsers, users }) {
   const handleDeleteUser = async (id) => {

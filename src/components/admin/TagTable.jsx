@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { deleteTagWithId } from "../api_fetch/tag";
+import { deleteTagWithId } from "../../api_fetch/tag";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
