@@ -1,8 +1,10 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import Comment from "./Comment";
 
 function BlogById() {
   const post = useLoaderData();
+  if (!post) return <h1 className="text-center text-2xl mt-10">Loading...</h1>;
   const {
     _id,
     author_id,
@@ -50,6 +52,7 @@ function BlogById() {
           </span>
         </p> */}
       </div>
+      <Comment post_id={_id}  />
     </div>
   );
 }

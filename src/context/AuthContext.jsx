@@ -1,11 +1,23 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAllPost } from "../api_fetch/post";
 
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [posts, setPosts] = useState([]);
 
+  const getAllData = async () => {
+    const { categoriesData, usersData, postsData } = await getAllPost();
+    setCategories(categoriesData);
+    setUsers(usersData);
+    setPosts(postsData);
+  }
+
+  getAllData();
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -30,7 +42,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, login, logout, capitalize }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, login, logout, capitalize, categories, users, posts }}>
       {children}
     </AuthContext.Provider>
   );

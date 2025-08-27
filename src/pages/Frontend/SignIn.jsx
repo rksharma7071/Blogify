@@ -72,12 +72,17 @@ function SignIn() {
             Sign Up
           </a>
         </div>
+        <div className="text-center text-sm text-gray-600">
+          Forgot your password?{" "}
+          <a href="/reset-password" className="text-blue-600 hover:underline">
+            Reset Password
+          </a>
+        </div>
 
         {message && (
           <p
-            className={`mt-4 text-center text-sm ${
-              message.includes("successful") ? "text-green-600" : "text-red-600"
-            }`}
+            className={`mt-4 text-center text-sm ${message.includes("successful") ? "text-green-600" : "text-red-600"
+              }`}
           >
             {message}
           </p>

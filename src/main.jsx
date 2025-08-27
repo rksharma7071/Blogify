@@ -41,6 +41,7 @@ import Settings from "./pages/frontend/Profile/Settings.jsx";
 import UpdateBlog from "./pages/frontend/Profile/UpdateBlog.jsx";
 import SocialLinks from "./pages/frontend/Profile/SocialLinks.jsx";
 import CategoryBySlug from "./components/frontend/CategoryBySlug.jsx";
+import ResetPassword from "./pages/frontend/ResetPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -133,6 +134,10 @@ const router = createBrowserRouter([
             <SignIn />
           </AuthRedirect>
         ),
+      },
+      {
+        path: "reset-password",
+        element: <ResetPassword />
       },
       {
         path: "signup",
