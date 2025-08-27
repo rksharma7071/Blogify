@@ -10,20 +10,23 @@ const getAllCategory = async () => {
   }
 };
 
-const getCategoryWithId = async (categoryId) => {
-  try {
-    categoryId = categoryId.params.id;
+const getCategoryWithId = async ({params}) => {
+  // console.log("getCategoryWithId called with params:", params);
 
-    const response = await fetch(`/api/categories/${categoryId}`);
-    if (!response.ok) throw new Error("Failed to fetch");
+  try {
+    const { slug } = params;
+    console.log("Fetching category with slug:", params);
+    const response = await fetch(`/api/categories/${slug}`);
+    if (!response.ok) throw new Error("Failed to fetch category");
+
     const data = await response.json();
-    return { data };
+    console.log("Fetched category data:", data);
+    return data; // directly return category object
   } catch (error) {
-    console.error(error);
-    return [];
+    console.error("Error loading category:", error);
+    throw error;
   }
 };
-
 
 const deleteCategoryWithId = async (categoryId) => {
   try {
@@ -34,11 +37,10 @@ const deleteCategoryWithId = async (categoryId) => {
     if (!response.ok) throw new Error("Failed to delete category");
     const data = await response.json();
     return { data };
-
   } catch (error) {
     console.error("Error deleting category:", error);
     return null;
   }
 };
 
-export {getAllCategory, getCategoryWithId, deleteCategoryWithId};
+export { getAllCategory, getCategoryWithId, deleteCategoryWithId };

@@ -40,6 +40,7 @@ import Notification from "./pages/Frontend/Profile/Notification.jsx";
 import Settings from "./pages/frontend/Profile/Settings.jsx";
 import UpdateBlog from "./pages/frontend/Profile/UpdateBlog.jsx";
 import SocialLinks from "./pages/frontend/Profile/SocialLinks.jsx";
+import CategoryBySlug from "./components/frontend/CategoryBySlug.jsx";
 
 const router = createBrowserRouter([
   {
@@ -80,8 +81,8 @@ const router = createBrowserRouter([
       },
       {
         path: "categories/:slug",
-        element: <FCategory />,
-        loader: getAllPost,
+        element: <CategoryBySlug />,
+        loader: getCategoryWithId,
       },
       {
         path: "profile",
