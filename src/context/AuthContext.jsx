@@ -24,7 +24,6 @@ export function AuthProvider({ children }) {
 
     setIsLoggedIn(!!userString);
   }, []);
-
   const login = (user, token) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);

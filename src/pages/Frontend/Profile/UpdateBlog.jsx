@@ -255,7 +255,7 @@ function UpdateBlog() {
                             <img
                                 src={post.featured_image instanceof File
                                     ? URL.createObjectURL(post.featured_image)
-                                    : `http://localhost:3000${post.featured_image}`}
+                                    : post.featured_image}
                                 alt="Preview"
                                 className="h-32 rounded border border-gray-300"
                             />

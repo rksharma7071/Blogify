@@ -46,7 +46,7 @@ function UserPosts({ posts: initialPosts, query }) {
 
   return (
     <>
-      <div className="min-w-full border border-gray-200">
+      <div className="overflow-x-auto border border-gray-200 rounded-md">
         <table className="min-w-full">
           <thead className="bg-gray-100">
             <tr>
