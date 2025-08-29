@@ -93,10 +93,7 @@ const router = createBrowserRouter([
             path: "",
             element: <ProDashboard />
           },
-          {
-            path: "account",
-            element: <Account />
-          },
+
           {
             path: "posts",
             element: <MyBlog />
@@ -113,18 +110,26 @@ const router = createBrowserRouter([
             path: "notification",
             element: <Notification />
           },
-          {
-            path: "social-links",
-            element: <SocialLinks />
-          },
+
           {
             path: "settings",
-            element: <Settings />
+            element: <Settings />,
+            children: [
+              {
+                path: "",
+                element: <Account />
+              },
+              {
+                path: "social-links",
+                element: <SocialLinks />
+              },
+              {
+                path: "change-password",
+                element: <ChangePassword />
+              }
+            ]
           },
-          {
-            path: "change-password",
-            element: <ChangePassword />
-          }
+
         ]
       },
       {

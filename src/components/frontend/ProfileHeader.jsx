@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { RiDashboardFill } from "react-icons/ri";
 import { MdAccountCircle, MdLogout } from "react-icons/md";
 import { MdVpnKey } from "react-icons/md";
@@ -16,28 +16,28 @@ import { DiGoogleAnalytics } from "react-icons/di";
 function ProfileHeader({ handleLogout }) {
   return (
     <div className="bg-white text-gray-800 w-40 md:w-60 flex-shrink-0 hidden md:flex flex-col">
-      {/* <Link to={''} className='flex items-center gap-2 p-4 hover:bg-blue-500 hover:text-white'>
+      {/* <Link to={''} className={({ isActive }) => `flex items-center gap-2 p-4 ${isActive ? "bg-blue-500 text-white" : "hover:bg-blue-500 hover:text-white"}`}>
         <FaUser />
         Profile
       </Link> */}
-      <Link to={'newPost'} className='flex items-center gap-2 p-4 hover:bg-blue-500 hover:text-white'>
+      <NavLink to={'newPost'} className={({ isActive }) => `flex items-center gap-2 p-4 ${isActive ? "bg-blue-500 text-white" : "hover:bg-blue-500 hover:text-white"}`}>
         <FaFilePen />
         New Post
-      </Link>
-      <Link to={'posts'} className='flex items-center gap-2 p-4 hover:bg-blue-500 hover:text-white'>
+      </NavLink>
+      <NavLink to={'posts'} className={({ isActive }) => `flex items-center gap-2 p-4 ${isActive ? "bg-blue-500 text-white" : "hover:bg-blue-500 hover:text-white"}`}>
         <MdLocalPostOffice />
         Posts
-      </Link>
-      {/* <Link to={'notification'} className='flex items-center gap-2 p-4 hover:bg-blue-500 hover:text-white'>
+      </NavLink>
+      {/* <NavLink to={'notification'} className={({ isActive }) => `flex items-center gap-2 p-4 ${isActive ? "bg-blue-500 text-white" : "hover:bg-blue-500 hover:text-white"}`}>
         <IoIosNotifications />
         Notifications
-      </Link> */}
-      <Link to={'analytics'} className='flex items-center gap-2 p-4 hover:bg-blue-500 hover:text-white'>
+      </NavLink> */}
+      {/* <NavLink to={'analytics'} className={({ isActive }) => `flex items-center gap-2 p-4 ${isActive ? "bg-blue-500 text-white" : "hover:bg-blue-500 hover:text-white"}`}>
         <DiGoogleAnalytics /> Analytics
-      </Link>
-      <Link to={'settings'} className='flex items-center gap-2 p-4 hover:bg-blue-500 hover:text-white'>
+      </NavLink> */}
+      <NavLink to={'settings'} className={({ isActive }) => `flex items-center gap-2 p-4 ${isActive ? "bg-blue-500 text-white" : "hover:bg-blue-500 hover:text-white"}`}>
         <IoSettings />Settings
-      </Link>
+      </NavLink>
       <div className='flex items-center gap-2 cursor-pointer p-4 hover:bg-blue-500 hover:text-white' onClick={handleLogout}>
         <MdLogout className="text-lg" /> Logout
       </div>
