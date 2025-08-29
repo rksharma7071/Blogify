@@ -31,9 +31,9 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import Profile from "./pages/frontend/Profile.jsx";
 import AuthRedirect from "./context/AuthRedirect.jsx";
 import BlogById from "./components/frontend/BlogById.jsx";
-import Account from "./pages/frontend/Profile/Account.jsx";
+import Account from "./pages/frontend/Profile/Settings/Account.jsx";
 import ProDashboard from "./pages/frontend/Profile/Dashboard.jsx";
-import ChangePassword from "./pages/frontend/Profile/ChangePassword.jsx";
+import ChangePassword from "./pages/frontend/Profile/Settings/ChangePassword.jsx";
 import MyBlog from "./pages/frontend/Profile/MyBlog.jsx";
 import WriteBlog from "./pages/frontend/Profile/WriteBlog.jsx";
 import Notification from "./pages/Frontend/Profile/Notification.jsx";
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
       //   element: <Home />,
       // },
       {
-        path: '',
+        index: true,
         element: <Home />,
         loader: getAllPost,
       },
