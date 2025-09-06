@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import ConfirmModel from '../../../components/common/ConfirmModel';
+import ConfirmModel from '../../../../components/common/ConfirmModel';
+// import ConfirmModel from '../../../components/common/ConfirmModel';
 
 function SocialLinks() {
     const [socialLinks, setSocialLinks] = useState({
@@ -90,6 +91,7 @@ function SocialLinks() {
         <div className="w-full mx-auto p-6 bg-white">
 
             {responseMessage && (
+                
                 <ConfirmModel
                     title={responseMessage.type === "success" ? "Success" : "Error"}
                     subtitle={responseMessage.message}

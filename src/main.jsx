@@ -39,7 +39,7 @@ import WriteBlog from "./pages/frontend/Profile/WriteBlog.jsx";
 import Notification from "./pages/Frontend/Profile/Notification.jsx";
 import Settings from "./pages/frontend/Profile/Settings.jsx";
 import UpdateBlog from "./pages/frontend/Profile/UpdateBlog.jsx";
-import SocialLinks from "./pages/frontend/Profile/SocialLinks.jsx";
+import SocialLinks from "./pages/frontend/Profile/Settings/SocialLinks.jsx";
 import CategoryBySlug from "./components/frontend/CategoryBySlug.jsx";
 import ResetPassword from "./pages/frontend/ResetPassword.jsx";
 
