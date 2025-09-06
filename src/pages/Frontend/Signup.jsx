@@ -10,7 +10,7 @@ function Signup() {
     last_name: "",
   });
   const [message, setMessage] = useState("");
-
+  const API_BASE = import.meta.env.VITE_API;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -18,7 +18,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/auth/signup", formData);
+      const res = await axios.post(`${API_BASE}/auth/signup`, formData);
       localStorage.setItem("token", res.data.token);
       setMessage("Signup successful!");
       setFormData({
@@ -106,9 +106,8 @@ function Signup() {
 
           {message && (
             <p
-              className={`text-center text-sm ${
-                message.includes("successful") ? "text-green-600" : "text-red-600"
-              }`}
+              className={`text-center text-sm ${message.includes("successful") ? "text-green-600" : "text-red-600"
+                }`}
             >
               {message}
             </p>

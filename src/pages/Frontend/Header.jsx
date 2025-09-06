@@ -25,7 +25,7 @@ function Header() {
   const [result, setResult] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const API_BASE = import.meta.env.VITE_API;
   // Debounced search using custom debounce function
   const fetchSearchResults = useCallback(
     debounce(async (query) => {
@@ -35,7 +35,7 @@ function Header() {
         return;
       }
       try {
-        const { data } = await axios.get(`/api/search?q=${query}`);
+        const { data } = await axios.get(`${API_BASE}/search?q=${query}`);
         setResult(data);
         setShowDropdown(true);
       } catch (e) {

@@ -1,11 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
-
+import React, { useState, useContext } from "react";
 function CategoryForm({ refreshCategories }) {
   const [category, setCategory] = useState({
     name: "",
     description: "",
   });
+  const API_BASE = import.meta.env.VITE_API;
 
   const handleChange = (e) => {
     setCategory({ ...category, [e.target.name]: e.target.value });
@@ -13,7 +13,7 @@ function CategoryForm({ refreshCategories }) {
 
   const handleCategoryCreate = async (category) => {
     try {
-      await axios.post("/api/categories", category);
+      await axios.post(`${API_BASE}/categories`, category);
       await refreshCategories();
       setCategory({
         name: "",

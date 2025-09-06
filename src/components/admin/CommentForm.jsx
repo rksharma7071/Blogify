@@ -14,7 +14,7 @@ function CommentForm({ commentsData, usersData, postsData, refreshComments }) {
 
   const handleCommentCreate = async (comment) => {
     try {
-      await axios.post("/api/comments", comment);
+      await axios.post(`${API_BASE}/comments`, comment);
       await refreshComments();
       setComment({
         post_id: "",

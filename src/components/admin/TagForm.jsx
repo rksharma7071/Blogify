@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 function TagForm({ refreshTags, showToast, initialData }) {
   const [tag, setTag] = useState({ name: "" });
-
+  const API_BASE = process.env.REACT_APP_API_BASE;
   // Pre-fill form in edit mode
   useEffect(() => {
     if (initialData) {
@@ -20,12 +20,12 @@ function TagForm({ refreshTags, showToast, initialData }) {
     try {
       if (initialData?._id) {
         // Edit Mode
-        await axios.patch(`/api/tags/${initialData._id}`, tag);
+        await axios.patch(`${API_BASE}/tags/${initialData._id}`, tag);
         showToast("Tag updated successfully!", "success");
         
       } else {
         // Add Mode
-        await axios.post("/api/tags", tag);
+        await axios.post(`${API_BASE}/tags`, tag);
         showToast("Tag created successfully!", "success");
       }
       await refreshTags();

@@ -1,10 +1,12 @@
+const API_BASE = import.meta.env.VITE_API;
+
 const getAllPost = async () => {
   try {
     const [postsResponse, usersResponse, categoriesResponse] =
       await Promise.all([
-        fetch("/api/posts"),
-        fetch("/api/users"),
-        fetch("/api/categories"),
+        fetch(`${API_BASE}/posts`),
+        fetch(`${API_BASE}/users`),
+        fetch(`${API_BASE}/categories`),
       ]);
 
     if (!categoriesResponse.ok || !usersResponse.ok || !postsResponse.ok)
@@ -48,7 +50,7 @@ const getPostWithId = async (postId) => {
 const deletePostWithId = async (postId) => {
   console.log(postId);
   try {
-    const response = await fetch(`/api/posts/${postId}`, {
+    const response = await fetch(`${API_BASE}/posts/${postId}`, {
       method: "DELETE",
     });
 

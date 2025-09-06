@@ -19,14 +19,14 @@ function UpdateBlog() {
         featured_image: "",
         slug: ""
     });
-
+    const API_BASE = import.meta.env.VITE_API;
     // console.log(post)
     // console.log("Post: ", post);
     useEffect(() => {
         const fetchPost = async () => {
             // console.log("Slug: ", slug)
             try {
-                const res = await axios.get(`/api/posts/${slug}`);
+                const res = await axios.get(`${API_BASE}/posts/${slug}`);
                 const blog = res.data;
 
                 setPost({
@@ -115,19 +115,19 @@ function UpdateBlog() {
             // if (post.featured_image instanceof File) {
             //     const imageForm = new FormData();
             //     imageForm.append("image", post.featured_image);
-            //     const imageRes = await axios.post("/api/upload", imageForm);
+            //     const imageRes = await axios.post(`${API_BASE}/upload`, imageForm);
             //     featuredImageUrl = imageRes.data.url;
             // }
 
             const tagIds = [];
             for (const tag of tags) {
-                const tagRes = await axios.post("http://localhost:3000/tags", {
+                const tagRes = await axios.post(`${API_BASE}/tags`, {
                     name: tag
                 });
                 tagIds.push(tagRes.data._id || tagRes.data.tag?.id);
             }
 
-            const categoryRes = await axios.post("http://localhost:3000/categories", {
+            const categoryRes = await axios.post(`${API_BASE}/categories`, {
                 name: post.category_id,
                 description: " " // dummy description if not present
             });
@@ -156,7 +156,7 @@ function UpdateBlog() {
             // for (let [key, value] of formData.entries()) {
             //     console.log(`${key}: ${value}`);
             // }
-            const res = await axios.patch(`/api/posts/${slug}`, formData, {
+            const res = await axios.patch(`${API_BASE}/posts/${slug}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

@@ -20,11 +20,13 @@ function PostForm({ refreshPosts, usersData, categoriesData }) {
     const value = e.target.value;
     setPost({ ...post, tags: value.split(",").map((tag) => tag.trim()) });
   };
+  const API_BASE = import.meta.env.VITE_API;
+  
 
   const handlePostCreate = async (post) => {
     try {
       console.log(post);
-      const response = await axios.post("/api/posts", {
+      const response = await axios.post(`${API_BASE}/posts`, {
         title: post.title,
         content: post.content,
         author_id: post.author_id,

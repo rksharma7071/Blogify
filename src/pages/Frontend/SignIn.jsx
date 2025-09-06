@@ -8,7 +8,7 @@ function SignIn() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-
+  const API_BASE = import.meta.env.VITE_API;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -16,7 +16,7 @@ function SignIn() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/auth/login", formData);
+      const res = await axios.post(`${API_BASE}/auth/login`, formData);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setIsLoggedIn(true);
