@@ -30,7 +30,7 @@ import Signup from "./pages/Frontend/Signup.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import Profile from "./pages/Frontend/Profile.jsx";
 import AuthRedirect from "./context/AuthRedirect.jsx";
-import BlogById from "./components/Frontend/BlogById.jsx";
+import BlogById from "./components/frontend/BlogById.jsx";
 import Account from "./pages/Frontend/Profile/Settings/Account.jsx";
 import ProDashboard from "./pages/Frontend/Profile/Dashboard.jsx";
 import ChangePassword from "./pages/Frontend/Profile/Settings/ChangePassword.jsx";
@@ -40,7 +40,7 @@ import Notification from "./pages/Frontend/Profile/Notification.jsx";
 import Settings from "./pages/Frontend/Profile/Settings.jsx";
 import UpdateBlog from "./pages/Frontend/Profile/UpdateBlog.jsx";
 import SocialLinks from "./pages/Frontend/Profile/Settings/SocialLinks.jsx";
-import CategoryBySlug from "./components/Frontend/CategoryBySlug.jsx";
+import CategoryBySlug from "./components/frontend/CategoryBySlug.jsx";
 import ResetPassword from "./pages/Frontend/ResetPassword.jsx";
 
 const router = createBrowserRouter([
