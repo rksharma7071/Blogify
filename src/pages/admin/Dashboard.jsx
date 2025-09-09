@@ -33,7 +33,7 @@ function Dashboard() {
               <div className="h-48 bg-gray-200 flex justify-center items-center overflow-hidden">
                 {post.featured_image ? (
                   <img
-                    src={`http://localhost:3000${post.featured_image}`}
+                    src={post.featured_image}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />

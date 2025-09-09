@@ -7,7 +7,7 @@ function WriteBlog() {
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]);
     const [postTags, setPostTags] = useState([]);
-
+    const API_BASE = import.meta.env.VITE_API;
     const [post, setPost] = useState({
         title: "",
         content: "",
@@ -95,24 +95,26 @@ function WriteBlog() {
 
         try {
             // ✅ Step 1: Get or create category
-            const categoryRes = await axios.post("http://localhost:3000/categories", {
+            console.log(`category_id: ${post.category_id}`);
+            const categoryRes = await axios.post(`${API_BASE}/categories`, {
                 name: post.category_id,
-                description: " " // dummy description if not present
+                description: "NA"
             });
+            console.log(`categoryRes: ${categoryRes}`);
 
             const categoryId = categoryRes.data.category.id;
             // console.log("categoryRes: ", categoryRes.data.category.id);
-            console.log("categoryId: ", categoryId);
+            console.log(`categoryId: ${categoryId}`);
 
             // ✅ Step 2: Create all tags if not exist
             const tagIds = [];
             for (const tag of tags) {
-                const tagRes = await axios.post("http://localhost:3000/tags", {
+                const tagRes = await axios.post(`${API_BASE}/tags`, {
                     name: tag
                 });
                 tagIds.push(tagRes.data._id || tagRes.data.tag?.id); // supports both cases
             }
-
+            console.log(`tagIds: ${tagIds}`)
             formData.append("title", post.title);
             formData.append("content", post.content);
             formData.append("author_id", post.author_id);
@@ -134,7 +136,7 @@ function WriteBlog() {
 
             // setPrevData(JSON.stringify(data));
             // ✅ Step 4: Submit post
-            const res = await axios.post("http://localhost:3000/posts", formData, {
+            const res = await axios.post(`${API_BASE}/posts`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
