@@ -1,7 +1,7 @@
 const API_BASE = import.meta.env.VITE_API;
 
 
-console.log("API_BASE:", API_BASE);
+// console.log("API_BASE:", API_BASE);
 
 const getAllCategory = async () => {
   try {
