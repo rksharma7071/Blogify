@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/common/Loading";
 
 function SignIn() {
@@ -30,7 +30,7 @@ function SignIn() {
       setMessage(err.response?.data?.msg || "Login failed.");
     }
   };
-  
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
@@ -72,15 +72,15 @@ function SignIn() {
 
         <div className="mt-4 text-center text-sm text-gray-600">
           Don&apos;t have an account?{" "}
-          <a href="/signup" className="text-blue-600 hover:underline">
+          <Link to={"/signup"} className="text-blue-600 hover:underline">
             Sign Up
-          </a>
+          </Link>
         </div>
         <div className="text-center text-sm text-gray-600">
           Forgot your password?{" "}
-          <a href="/reset-password" className="text-blue-600 hover:underline">
+          <Link to={"/reset-password"} className="text-blue-600 hover:underline">
             Reset Password
-          </a>
+          </Link>
         </div>
 
         {message && (
