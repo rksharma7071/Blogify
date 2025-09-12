@@ -26,7 +26,10 @@ function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const API_BASE = import.meta.env.VITE_API;
-  // Debounced search using custom debounce function
+
+
+
+
   const fetchSearchResults = useCallback(
     debounce(async (query) => {
       if (query.trim().length === 0) {
@@ -103,11 +106,12 @@ function Header() {
             className="flex flex-col items-center hover:text-blue-600"
           >
             <IoHomeSharp className="text-lg" />
-            <span className="text-xs">Home</span>
+            <span className="text-xs" >Home</span>
           </Link>
           <Link
             to="/categories"
             className="flex flex-col items-center hover:text-blue-600"
+
           >
             <BiSolidCategoryAlt className="text-lg" />
             <span className="text-xs">Category</span>
@@ -116,6 +120,7 @@ function Header() {
             <Link
               to="/signin"
               className="flex flex-col items-center hover:text-blue-600"
+
             >
               <MdLogin className="text-lg" />
               <span className="text-xs">Sign In</span>
@@ -124,6 +129,7 @@ function Header() {
             <Link
               to="/profile"
               className="flex flex-col items-center hover:text-blue-600"
+
             >
               <FaUser className="text-lg" />
               <span className="text-xs">Profile</span>

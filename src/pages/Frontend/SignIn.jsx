@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/common/Loading";
 
 function SignIn() {
   const { login, setIsLoggedIn } = useContext(AuthContext);
@@ -9,6 +10,8 @@ function SignIn() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const API_BASE = import.meta.env.VITE_API;
+
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -27,6 +30,7 @@ function SignIn() {
       setMessage(err.response?.data?.msg || "Login failed.");
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">

@@ -7,6 +7,7 @@ function FCategory() {
   const [posts, setPosts] = useState(postsData);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  
 
   function getUsedCategories() {
     const categoryIds = posts.map((post) => post.category_id._id.toString());

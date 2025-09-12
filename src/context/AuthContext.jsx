@@ -1,5 +1,5 @@
+// AuthContent.jsx
 import React, { createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { getAllPost } from "../api_fetch/post";
 import Loading from "../components/common/Loading";
 
@@ -12,6 +12,7 @@ export function AuthProvider({ children }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // ✅ Fetch posts, users, and categories
   const getAllData = async () => {
     try {
       const { categoriesData, usersData, postsData } = await getAllPost();
@@ -25,48 +26,52 @@ export function AuthProvider({ children }) {
     }
   };
 
-
-
-  // console.log(categories, users, posts);
-
+  // ✅ On mount: check login status & fetch data
   useEffect(() => {
+    const userString = localStorage.getItem("user");
+    setIsLoggedIn(!!userString);
     getAllData();
   }, []);
 
-  useEffect(() => {
-    if (!loading) {
-      const userString = localStorage.getItem("user");
-      setIsLoggedIn(!!userString);
-    }
-  }, [loading]);
-
-  useEffect(() => {
-    const userString = localStorage.getItem("user");
-
-    setIsLoggedIn(!!userString);
-  }, [loading]);
+  // ✅ Login method
   const login = (user, token) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
     setIsLoggedIn(true);
   };
-  const capitalize = (str) => {
-    if (!str) return '';
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  }
 
+  // ✅ Logout method
   const logout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setIsLoggedIn(false);
   };
 
-    if (loading) {
+  // ✅ Capitalize utility
+  const capitalize = (str) => {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+
+  if (loading) {
     return <Loading />;
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, login, logout, capitalize, categories, users, posts, loading, setLoading }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        setIsLoggedIn,
+        login,
+        logout,
+        capitalize,
+        categories,
+        users,
+        posts,
+        loading,
+        setLoading,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
