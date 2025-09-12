@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllPost } from "../api_fetch/post";
+import Loading from "../components/common/Loading";
 
 export const AuthContext = createContext();
 
@@ -9,21 +10,41 @@ export function AuthProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getAllData = async () => {
-    const { categoriesData, usersData, postsData } = await getAllPost();
-    setCategories(categoriesData);
-    setUsers(usersData);
-    setPosts(postsData);
-  }
+    try {
+      const { categoriesData, usersData, postsData } = await getAllPost();
+      setCategories(categoriesData || []);
+      setUsers(usersData || []);
+      setPosts(postsData || []);
+    } catch (err) {
+      console.error("Error fetching posts:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  getAllData();
+
+
+  // console.log(categories, users, posts);
+
+  useEffect(() => {
+    getAllData();
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const userString = localStorage.getItem("user");
+      setIsLoggedIn(!!userString);
+    }
+  }, [loading]);
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
 
     setIsLoggedIn(!!userString);
-  }, []);
+  }, [loading]);
   const login = (user, token) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
@@ -40,8 +61,12 @@ export function AuthProvider({ children }) {
     setIsLoggedIn(false);
   };
 
+    if (loading) {
+    return <Loading />;
+  }
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, login, logout, capitalize, categories, users, posts }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, login, logout, capitalize, categories, users, posts, loading, setLoading }}>
       {children}
     </AuthContext.Provider>
   );

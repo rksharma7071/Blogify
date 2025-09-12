@@ -1,5 +1,7 @@
 # 📖 Blogify
 
+🚀 Live Preview: [https://blogify-rk.netlify.app](https://blogify-rk.netlify.app)
+
 Blogify is a **full-stack blogging platform** built with **React, React Router, TailwindCSS, Node.js, Express, and MongoDB**.  
 It includes a **frontend blogging site** for readers and authors, and an **admin dashboard** for managing users, posts, tags, categories, and comments.
 

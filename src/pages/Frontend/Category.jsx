@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import Loading from "../../components/common/Loading";
 
 function FCategory() {
   const { categoriesData, usersData, postsData } = useLoaderData();
   const [posts, setPosts] = useState(postsData);
-
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   function getUsedCategories() {
-    const categoryIds = postsData.map((post) => post.category_id._id.toString());
-    
-    const usedCategories = categoriesData.filter((cat) =>
+    const categoryIds = posts.map((post) => post.category_id._id.toString());
+
+    return categoriesData.filter((cat) =>
       categoryIds.includes(cat._id.toString())
     );
-    
-    return usedCategories;
   }
 
-  const [categories, setCategories] = useState(getUsedCategories);
+  useEffect(() => {
+    const usedCats = getUsedCategories();
+    setCategories(usedCats);
+    console.log("usedCats", usedCats);
+    setLoading(false);
+  }, [posts, categoriesData]);
 
-
+  if (loading) {
+    return <><Loading /></>;
+  }
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
