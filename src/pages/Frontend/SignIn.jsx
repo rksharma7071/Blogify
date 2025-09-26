@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loading from "../../components/common/Loading";
 
 function SignIn() {
   const { login, setIsLoggedIn } = useContext(AuthContext);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const API_BASE = import.meta.env.VITE_API;
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,7 +19,7 @@ function SignIn() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/auth/login", formData);
+      const res = await axios.post(`${API_BASE}/auth/login`, formData);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setIsLoggedIn(true);
@@ -27,6 +30,7 @@ function SignIn() {
       setMessage(err.response?.data?.msg || "Login failed.");
     }
   };
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
@@ -68,15 +72,15 @@ function SignIn() {
 
         <div className="mt-4 text-center text-sm text-gray-600">
           Don&apos;t have an account?{" "}
-          <a href="/signup" className="text-blue-600 hover:underline">
+          <Link to={"/signup"} className="text-blue-600 hover:underline">
             Sign Up
-          </a>
+          </Link>
         </div>
         <div className="text-center text-sm text-gray-600">
           Forgot your password?{" "}
-          <a href="/reset-password" className="text-blue-600 hover:underline">
+          <Link to={"/reset-password"} className="text-blue-600 hover:underline">
             Reset Password
-          </a>
+          </Link>
         </div>
 
         {message && (

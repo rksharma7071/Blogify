@@ -1,9 +1,10 @@
 import { getAllPost } from "./post";
+const API_BASE = import.meta.env.VITE_API;
 
 // Fetch All Users
 const getAllUser = async () => {
   try {
-    const response = await fetch("/api/users");
+    const response = await fetch(`${API_BASE}/users`);
     if (!response.ok) throw new Error("Failed to fetch users");
     const data = await response.json();
     return { data };
@@ -17,7 +18,7 @@ const getAllUser = async () => {
 const getUserWithId = async ({ params }) => {
   try {
     const userId = params.id; // This works correctly with React Router loader
-    const response = await fetch(`/api/users/${userId}`);
+    const response = await fetch(`${API_BASE}/users/${userId}`);
     if (!response.ok) throw new Error("Failed to fetch user");
     const data = await response.json();
     return { data };
@@ -30,7 +31,7 @@ const getUserWithId = async ({ params }) => {
 // Delete User by ID
 const deleteUserWithId = async (userId) => {
   try {
-    const response = await fetch(`/api/users/${userId}`, {
+    const response = await fetch(`${API_BASE}/users/${userId}`, {
       method: "DELETE",
     });
     if (!response.ok) throw new Error("Failed to delete user");

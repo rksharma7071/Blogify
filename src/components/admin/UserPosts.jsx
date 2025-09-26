@@ -8,7 +8,7 @@ function UserPosts({ posts: initialPosts, query }) {
   const { capitalize } = useContext(AuthContext)
   const navigate = useNavigate();
   const [posts, setPosts] = useState(initialPosts || []);
-
+  const API_BASE = import.meta.env.VITE_API;
   useEffect(() => {
     initialPosts = initialPosts.filter((post) =>
       post.title.toLowerCase().includes(query.toLowerCase()) ||
@@ -31,7 +31,7 @@ function UserPosts({ posts: initialPosts, query }) {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`/api/posts/${postSlug}`);
+      await axios.delete(`${API_BASE}/posts/${postSlug}`);
       console.log("Post deleted:", postSlug);
 
       setPosts((prevPosts) =>

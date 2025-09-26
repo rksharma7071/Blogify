@@ -10,14 +10,14 @@ function UserForm({ refreshUsers }) {
     email: "",
     role: "author",
   });
-
+  const API_BASE = process.env.REACT_APP_API_BASE;
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleUserCreate = async (userData) => {
     try {
-      await axios.post("/api/auth/signup", userData);
+      await axios.post(`${API_BASE}/auth/signup`, userData);
       await refreshUsers();
       setUser({
         username: "",

@@ -4,6 +4,7 @@ import ConfirmModel from '../../../../components/common/ConfirmModel';
 // import ConfirmModel from '../../../components/common/ConfirmModel';
 
 function SocialLinks() {
+    const API_BASE = import.meta.env.VITE_API;
     const [socialLinks, setSocialLinks] = useState({
         facebook: "",
         instagram: "",
@@ -17,7 +18,7 @@ function SocialLinks() {
 
     const getUserWithId = async (userId) => {
         try {
-            const response = await axios.get(`/api/users/${userId}`);
+            const response = await axios.get(`${API_BASE}/users/${userId}`);
             return response.data;
         } catch (error) {
             console.error("Failed to fetch user", error.response?.data || error.message);
@@ -41,7 +42,7 @@ function SocialLinks() {
         e.preventDefault();
         if (!userId) return;
         try {
-            const response = await axios.patch(`/api/users/${userId}`, socialLinks);
+            const response = await axios.patch(`${API_BASE}/users/${userId}`, socialLinks);
             // alert("Social links updated successfully!");
             setResponseMessage({
                 message: "Social links updated successfully!",

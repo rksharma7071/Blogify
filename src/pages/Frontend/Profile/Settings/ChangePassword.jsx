@@ -23,10 +23,10 @@ function ChangePassword() {
     msg: "",
     type: ""
   });
-
+  const API_BASE = import.meta.env.VITE_API;
   const changePassword = async () => {
     try {
-      const response = await axios.post('/api/auth/change-password', userData);
+      const response = await axios.post(`${API_BASE}/auth/change-password`, userData);
       setMessage({ msg: response.data.msg, type: "success" });
     } catch (error) {
       console.error("Error changing password:", error);

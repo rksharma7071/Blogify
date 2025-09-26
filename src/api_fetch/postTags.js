@@ -1,9 +1,11 @@
+const API_BASE = import.meta.env.VITE_API;
+
 const getAllPostTag = async () => {
   try {
     const [postTagsResponse, tagsResponse, postsResponse] = await Promise.all([
-      fetch("/api/postTags/"),
-      fetch("/api/tags/"),
-      fetch("/api/posts"),
+      fetch(`${API_BASE}/postTags/`),
+      fetch(`${API_BASE}/tags/`),
+      fetch(`${API_BASE}/posts`),
     ]);
 
     if (!tagsResponse.ok || !postsResponse.ok || !postTagsResponse.ok)
@@ -22,9 +24,9 @@ const getAllPostTag = async () => {
 const getPostTagWithId = async () => {
   try {
     const [postTagsResponse, tagsResponse, postsResponse] = await Promise.all([
-      fetch("/api/postTags/"),
-      fetch("/api/tags/"),
-      fetch("/api/posts"),
+      fetch(`${API_BASE}/postTags/`),
+      fetch(`${API_BASE}/tags/`),
+      fetch(`${API_BASE}/posts`),
     ]);
 
     if (!tagsResponse.ok || !postsResponse.ok || !postTagsResponse.ok)

@@ -1,9 +1,11 @@
+const API_BASE = import.meta.env.VITE_API;
+
 const getAllComment = async () => {
   try {
     const [commentsResponse, usersResponse, postsResponse] = await Promise.all([
-      fetch("/api/comments"),
-      fetch("/api/users/"),
-      fetch("/api/posts/"),
+      fetch(`${API_BASE}/comments`),
+      fetch(`${API_BASE}/users/`),
+      fetch(`${API_BASE}/posts/`),
     ]);
 
     if (!commentsResponse.ok || !usersResponse.ok || !postsResponse.ok)
@@ -24,9 +26,9 @@ const getCommentWithId = async (commentId) => {
   try {
     commentId = commentId.params.id;
     const [commentsResponse, usersResponse, postsResponse] = await Promise.all([
-      fetch(`/api/comments/${commentId}`),
-      fetch("/api/users/"),
-      fetch("/api/posts/"),
+      fetch(`${API_BASE}/comments/${commentId}`),
+      fetch(`${API_BASE}/users/`),
+      fetch(`${API_BASE}/posts/`),
     ]);
 
     if (!commentsResponse.ok || !usersResponse.ok || !postsResponse.ok)
@@ -45,7 +47,7 @@ const getCommentWithId = async (commentId) => {
 
 const deleteCommentWithId = async (commentId) => {
   try {
-    const response = await fetch(`/api/comments/${commentId}`, {
+    const response = await fetch(`${API_BASE}/comments/${commentId}`, {
       method: "DELETE",
     });
 

@@ -1,10 +1,21 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { getAllPost } from "../../api_fetch/post";
 import { Title, Meta } from "react-head";
+=======
+// Home.jsx
+import React, { useContext, useState } from "react";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import Loading from "../../components/common/Loading";
+>>>>>>> ecbb0cf1069a99186a9f5464c8291902aec651f7
 
 function Home() {
   const { categoriesData, usersData, postsData } = useLoaderData();
+  const navigation = useNavigation();
+  const isPageLoading = navigation.state === "loading";
+
   const [posts, setPosts] = useState(postsData);
 
   const getUserName = (userId) => {
@@ -17,14 +28,9 @@ function Home() {
     return category ? category.name : "Unknown Category";
   };
 
-  const refreshPosts = async () => {
-    const updatedPostData = await getAllPost();
-    setPosts(updatedPostData.postsData || []);
-  };
-
-  // console.log(posts);
-  if (!posts) return <h1 className="text-center text-2xl mt-10">Loading...</h1>;
-
+  if (isPageLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -50,7 +56,6 @@ function Home() {
                 key={post._id}
                 className="bg-white shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
               >
-                {/* Featured Image */}
                 <div className="h-48 bg-gray-200 flex justify-center items-center overflow-hidden">
                   {post.featured_image ? (
                     <img
@@ -63,24 +68,19 @@ function Home() {
                   )}
                 </div>
 
-                {/* Content */}
                 <div className="p-5 space-y-2">
-                  {/* Category */}
                   <span className="text-sm text-blue-600 font-medium">
                     {getCategoryTitle(post.category_id?._id)}
                   </span>
 
-                  {/* Title */}
                   <h3 className="text-xl font-semibold text-gray-800">
                     <Link to={`/blogs/${post.slug}`} className="hover:underline">
                       {post.title}
                     </Link>
                   </h3>
 
-                  {/* Preview Content */}
                   <p className="text-gray-600 text-sm line-clamp-3">{post.content}</p>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2 text-xs mt-2">
                     {post.tags?.map((tag) => (
                       <span
@@ -92,14 +92,14 @@ function Home() {
                     ))}
                   </div>
 
-                  {/* Author Info */}
                   <div className="mt-4 text-xs text-gray-500 flex justify-between items-center">
                     <span>By {getUserName(post.author_id?._id)}</span>
                     <span
-                      className={`px-2 py-1 rounded text-xs font-medium ${post.status === "published"
-                        ? "bg-green-100 text-green-700"
-                        : "bg-yellow-100 text-yellow-700"
-                        }`}
+                      className={`px-2 py-1 rounded text-xs font-medium ${
+                        post.status === "published"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-yellow-100 text-yellow-700"
+                      }`}
                     >
                       {post.status.charAt(0).toUpperCase() + post.status.slice(1)}
                     </span>

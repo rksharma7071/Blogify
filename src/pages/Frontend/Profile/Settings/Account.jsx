@@ -13,6 +13,7 @@ function Account() {
     role: "",
   });
   const navigate = useNavigate();
+  const API_BASE = import.meta.env.VITE_API;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +22,7 @@ function Account() {
 
   const getUserWithId = async (userId) => {
     try {
-      const response = await axios.get(`/api/users/${userId}`);
+      const response = await axios.get(`${API_BASE}/users/${userId}`);
       return response.data;
     } catch (error) {
       console.error("Failed to fetch user", error.response?.data || error.message);
@@ -34,7 +35,7 @@ function Account() {
     if (!userId) return;
 
     try {
-      const response = await axios.patch(`/api/users/${userId}`, userData);
+      const response = await axios.patch(`${API_BASE}/users/${userId}`, userData);
       setUser(response.data);
       alert("User updated successfully!");
     } catch (error) {

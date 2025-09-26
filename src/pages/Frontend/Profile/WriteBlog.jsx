@@ -7,7 +7,7 @@ function WriteBlog() {
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]);
     const [postTags, setPostTags] = useState([]);
-
+    const API_BASE = import.meta.env.VITE_API;
     const [post, setPost] = useState({
         title: "",
         content: "",
@@ -91,28 +91,23 @@ function WriteBlog() {
         setPost((prev) => ({ ...prev, slug }));
 
         const formData = new FormData();
-        let data = {}; // ✅ Declare data here
+        let data = {};
 
         try {
-            // ✅ Step 1: Get or create category
-            const categoryRes = await axios.post("http://localhost:3000/categories", {
+            const categoryRes = await axios.post(`${API_BASE}/categories`, {
                 name: post.category_id,
-                description: " " // dummy description if not present
+                description: "NA"
             });
 
             const categoryId = categoryRes.data.category.id;
-            // console.log("categoryRes: ", categoryRes.data.category.id);
-            console.log("categoryId: ", categoryId);
 
-            // ✅ Step 2: Create all tags if not exist
             const tagIds = [];
             for (const tag of tags) {
-                const tagRes = await axios.post("http://localhost:3000/tags", {
+                const tagRes = await axios.post(`${API_BASE}/tags`, {
                     name: tag
                 });
-                tagIds.push(tagRes.data._id || tagRes.data.tag?.id); // supports both cases
+                tagIds.push(tagRes.data._id || tagRes.data.tag?.id);
             }
-
             formData.append("title", post.title);
             formData.append("content", post.content);
             formData.append("author_id", post.author_id);
@@ -121,27 +116,20 @@ function WriteBlog() {
             formData.append("slug", slug);
             formData.append("tags", JSON.stringify(tagIds));
 
-            // tagIds.forEach(tagId => {
-            //     formData.append("tags", tagId); // ✅ send as repeated keys
-            // });
             if (post.featured_image) {
                 formData.append("featured_image", post.featured_image);
             }
             for (let pair of formData.entries()) {
                 console.log(`${pair[0]}:`, pair[1]);
             }
-            // console.log("✅ Before Post:", data);
 
-            // setPrevData(JSON.stringify(data));
-            // ✅ Step 4: Submit post
-            const res = await axios.post("http://localhost:3000/posts", formData, {
+            const res = await axios.post(`${API_BASE}/posts`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
             console.log("✅ Post created:", res.data);
 
-            // ✅ Reset form
             setPost({
                 title: "",
                 content: "",
@@ -158,8 +146,6 @@ function WriteBlog() {
         } catch (error) {
             console.error("❌ Error saving post or tags:", error.response?.data || error.message);
         }
-
-        // console.log("📄 Final Data object (optional):", data);
     };
 
     return (
@@ -169,7 +155,7 @@ function WriteBlog() {
                 <div>{prevdata}</div>
             }
             <form className="max-w-xl mx-auto bg-white p-6" onSubmit={handlePost} encType="multipart/form-data">
-                {/* Title */}
+
                 <div className="pb-4">
                     <label htmlFor="title" className="block mb-2 text-gray-800 font-medium">Title</label>
                     <input
@@ -182,7 +168,6 @@ function WriteBlog() {
                     />
                 </div>
 
-                {/* Content */}
                 <div className="pb-4">
                     <label htmlFor="content" className="block mb-2 text-gray-800 font-medium">Content</label>
                     <textarea
@@ -195,7 +180,6 @@ function WriteBlog() {
                     ></textarea>
                 </div>
 
-                {/* Tags */}
                 <div className="pb-4">
                     <label htmlFor="tagInput" className="block mb-2 text-gray-800 font-medium">Tags</label>
                     <div className="flex gap-2">
@@ -236,7 +220,6 @@ function WriteBlog() {
                     </div>
                 </div>
 
-                {/* Category */}
                 <div className="pb-4">
                     <label htmlFor="category_id" className="block mb-2 text-gray-800 font-medium">Category</label>
                     <input
@@ -249,7 +232,6 @@ function WriteBlog() {
                     />
                 </div>
 
-                {/* Status */}
                 <div className="pb-4">
                     <label htmlFor="status" className="block mb-2 text-gray-800 font-medium">Status</label>
                     <select
@@ -265,7 +247,6 @@ function WriteBlog() {
                     </select>
                 </div>
 
-                {/* Image */}
                 <div className="pb-4">
                     <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-800">
                         Upload Image
@@ -289,7 +270,6 @@ function WriteBlog() {
                     )}
                 </div>
 
-                {/* Slug */}
                 <div className="pb-4">
                     <label htmlFor="slug" className="block mb-2 text-gray-800 font-medium">Slug</label>
                     <input
@@ -302,7 +282,6 @@ function WriteBlog() {
                     />
                 </div>
 
-                {/* Submit */}
                 <div className="pt-4">
                     <button
                         type="submit"

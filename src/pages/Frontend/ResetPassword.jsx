@@ -7,11 +7,11 @@ function ResetPassword() {
     const [otp, setOtp] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-
+    const API_BASE = import.meta.env.VITE_API;
     // Step 1: Request OTP
     const requestOtp = async () => {
         try {
-            const res = await axios.post("/api/auth/request-otp", { email });
+            const res = await axios.post(`${API_BASE}/auth/request-otp`, { email });
             setMessage(res.data.message);
             setStep(2);
         } catch (err) {
@@ -22,7 +22,7 @@ function ResetPassword() {
     // Step 2: Verify OTP
     const verifyOtp = async () => {
         try {
-            const res = await axios.post("/api/auth/verify-otp", { email, otp });
+            const res = await axios.post(`${API_BASE}/auth/verify-otp`, { email, otp });
             setMessage(res.data.message);
             setStep(3);
         } catch (err) {
@@ -33,7 +33,7 @@ function ResetPassword() {
     // Step 3: Reset Password
     const resetPassword = async () => {
         try {
-            const res = await axios.post("/api/auth/reset-password", { email, password });
+            const res = await axios.post(`${API_BASE}/auth/reset-password`, { email, password });
             setMessage(res.data.message);
             setStep(1);
         } catch (err) {

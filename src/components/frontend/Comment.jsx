@@ -9,7 +9,7 @@ function Comment({ post_id }) {
     const [comments, setComments] = useState([]);
     const [filteredComments, setFilteredComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-
+    const API_BASE = import.meta.env.VITE_API;
 
     const getUserName = (userId) => {
         const user = users.find((u) => u._id === userId);
@@ -20,7 +20,7 @@ function Comment({ post_id }) {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await axios.get("/api/comments");
+                const response = await axios.get(`${API_BASE}/comments`);
                 setComments(response.data);
             } catch (error) {
                 console.error("Error fetching comments:", error);
@@ -47,7 +47,7 @@ function Comment({ post_id }) {
         if (!newComment.trim()) return;
 
         try {
-            const response = await axios.post("/api/comments", {
+            const response = await axios.post(`${API_BASE}/comments`, {
                 post_id,
                 user_id: user?.id,
                 content: newComment,
