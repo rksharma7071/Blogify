@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Comment from "./Comment";
 import { AuthContext } from "../../context/AuthContext";
+import { Meta, Title } from "react-head";
 
 function BlogById() {
   const post = useLoaderData();
@@ -19,6 +20,29 @@ function BlogById() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10 my-10 bg-white shadow-md">
+      <Title>{title}</Title>
+      <Meta
+        name="description"
+        content={content.length > 150 ? content.slice(0, 150) + "…" : content}
+      />
+      <Meta
+        name="keywords"
+        content={`${title.split(" ")
+          .map(word => word.toLowerCase())
+          .join(", ")
+          }, ${category_id.name
+            .split(" ")
+            .map(word => word.toLowerCase())
+            .join(", ")}`}
+      />
+      <Meta
+        name="title"
+        content={title}
+      />
+      <Meta
+        name="image"
+        content={featured_image}
+      />
       <img
         src={featured_image}
         alt={title}
@@ -54,7 +78,7 @@ function BlogById() {
           </span>
         </p> */}
       </div>
-      { isLoggedIn &&
+      {isLoggedIn &&
         <Comment post_id={_id} />
       }
     </div>

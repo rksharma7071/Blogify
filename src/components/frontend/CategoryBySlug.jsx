@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { Title, Meta } from "react-head";
 
 function CategoryBySlug() {
   const data = useLoaderData();
@@ -27,6 +28,26 @@ function CategoryBySlug() {
 
   return (
     <div className="max-w-7xl w-7xl mx-auto p-6">
+      <Title>{category.name}</Title>
+      <Meta
+        name="description"
+        content={category.description}
+      />
+      <Meta
+        name="keywords"
+        content={
+          category.name.split(" ")
+            .map(word => word.toLowerCase())
+            .join(", ")}
+      />
+      <Meta
+        name="keywords"
+        content={
+          category.name.split(" ")
+            .map(word => word.toLowerCase())
+            .join(", ")}
+      />
+      
       {/* Header */}
       <div className="bg-white p-6 mb-6">
         <h1 className="text-3xl font-bold text-gray-800">

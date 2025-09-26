@@ -1,26 +1,37 @@
 import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { Title, Meta } from "react-head";
 
 function FCategory() {
   const { categoriesData, usersData, postsData } = useLoaderData();
   const [posts, setPosts] = useState(postsData);
 
-
   function getUsedCategories() {
     const categoryIds = postsData.map((post) => post.category_id._id.toString());
-    
+
     const usedCategories = categoriesData.filter((cat) =>
       categoryIds.includes(cat._id.toString())
     );
-    
+
     return usedCategories;
   }
 
   const [categories, setCategories] = useState(getUsedCategories);
 
-
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
+      {/* ✅ SEO with react-head */}
+      <Title>Blogify – Explore Blog Categories & Topics</Title>
+      <Meta
+        name="description"
+        content="Browse articles by category on Blogify — explore web development, React, JavaScript, CSS, productivity, and more topics organized by your interests."
+      />
+      <Meta
+        name="keywords"
+        content="blogify, blog categories, web development categories, React category, JavaScript topics, CSS tutorials, programming categories, frontend blog categories"
+      />
+      <Meta name="author" content="Retesh Kumar Sharma" />
+
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Categories
       </h1>

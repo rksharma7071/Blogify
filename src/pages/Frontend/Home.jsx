@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { getAllPost } from "../../api_fetch/post";
+import { Title, Meta } from "react-head";
 
 function Home() {
   const { categoriesData, usersData, postsData } = useLoaderData();
@@ -27,6 +28,19 @@ function Home() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
+      <Title>Blogify – Your Go-to Blog for JavaScript & Web Design</Title>
+      <Meta
+        name="description"
+        content="Blogify — a modern tech & lifestyle blog offering tips, tutorials, and insights on web development, JavaScript, React, CSS, and productivity."
+      />
+      <Meta
+        name="keywords"
+        content="blogify, tech blog, web development, React tutorials, JavaScript articles, CSS tips, programming blog, frontend development, productivity, coding tutorials"
+      />
+      <Meta
+        name="title"
+        content="Blogify – Your Go-to Blog for JavaScript & Web Design"
+      />
       {posts.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts
