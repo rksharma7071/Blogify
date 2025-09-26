@@ -19,28 +19,6 @@ function FCategory() {
 
   const [categories, setCategories] = useState(getUsedCategories);
 
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  
-
-  function getUsedCategories() {
-    const categoryIds = posts.map((post) => post.category_id._id.toString());
-
-    return categoriesData.filter((cat) =>
-      categoryIds.includes(cat._id.toString())
-    );
-  }
-
-  useEffect(() => {
-    const usedCats = getUsedCategories();
-    setCategories(usedCats);
-    console.log("usedCats", usedCats);
-    setLoading(false);
-  }, [posts, categoriesData]);
-
-  if (loading) {
-    return <><Loading /></>;
-  }
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       {/* ✅ SEO with react-head */}

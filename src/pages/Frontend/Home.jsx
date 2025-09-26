@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { getAllPost } from "../../api_fetch/post";
 import { Title, Meta } from "react-head";
-// Home.jsx
-import React, { useContext, useState } from "react";
-import { Link, useLoaderData, useNavigation } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import Loading from "../../components/common/Loading";
 
 function Home() {

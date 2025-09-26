@@ -43,6 +43,7 @@ import UpdateBlog from "./pages/Frontend/Profile/UpdateBlog.jsx";
 import SocialLinks from "./pages/Frontend/Profile/Settings/SocialLinks.jsx";
 import CategoryBySlug from "./components/frontend/CategoryBySlug.jsx";
 import ResetPassword from "./pages/Frontend/ResetPassword.jsx";
+import { HeadProvider } from "react-head";
 
 const router = createBrowserRouter([
   {

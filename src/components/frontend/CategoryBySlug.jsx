@@ -48,7 +48,6 @@ function CategoryBySlug() {
             .join(", ")}
       />
       
-    <div className="max-w-7xl w-full  mx-auto p-6">
       {/* Header */}
       <div className="bg-white p-6 mb-6">
         <h1 className="text-3xl font-bold text-gray-800">
