@@ -1,15 +1,12 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { getAllPost } from "../../api_fetch/post";
 import { Title, Meta } from "react-head";
-=======
 // Home.jsx
 import React, { useContext, useState } from "react";
 import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Loading from "../../components/common/Loading";
->>>>>>> ecbb0cf1069a99186a9f5464c8291902aec651f7
 
 function Home() {
   const { categoriesData, usersData, postsData } = useLoaderData();

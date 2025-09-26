@@ -27,7 +27,6 @@ function CategoryBySlug() {
   }, [category._id, posts]); // ✅ watch for category and posts changes
 
   return (
-<<<<<<< HEAD
     <div className="max-w-7xl w-7xl mx-auto p-6">
       <Title>{category.name}</Title>
       <Meta
@@ -49,9 +48,7 @@ function CategoryBySlug() {
             .join(", ")}
       />
       
-=======
     <div className="max-w-7xl w-full  mx-auto p-6">
->>>>>>> ecbb0cf1069a99186a9f5464c8291902aec651f7
       {/* Header */}
       <div className="bg-white p-6 mb-6">
         <h1 className="text-3xl font-bold text-gray-800">

@@ -38,20 +38,11 @@ import ChangePassword from "./pages/Frontend/Profile/Settings/ChangePassword.jsx
 import MyBlog from "./pages/Frontend/Profile/MyBlog.jsx";
 import WriteBlog from "./pages/Frontend/Profile/WriteBlog.jsx";
 import Notification from "./pages/Frontend/Profile/Notification.jsx";
-<<<<<<< HEAD
-import Settings from "./pages/frontend/Profile/Settings.jsx";
-import UpdateBlog from "./pages/frontend/Profile/UpdateBlog.jsx";
-import SocialLinks from "./pages/frontend/Profile/Settings/SocialLinks.jsx";
-import CategoryBySlug from "./components/frontend/CategoryBySlug.jsx";
-import ResetPassword from "./pages/frontend/ResetPassword.jsx";
-import { HeadProvider } from "react-head";
-=======
 import Settings from "./pages/Frontend/Profile/Settings.jsx";
 import UpdateBlog from "./pages/Frontend/Profile/UpdateBlog.jsx";
 import SocialLinks from "./pages/Frontend/Profile/Settings/SocialLinks.jsx";
 import CategoryBySlug from "./components/frontend/CategoryBySlug.jsx";
 import ResetPassword from "./pages/Frontend/ResetPassword.jsx";
->>>>>>> ecbb0cf1069a99186a9f5464c8291902aec651f7
 
 const router = createBrowserRouter([
   {

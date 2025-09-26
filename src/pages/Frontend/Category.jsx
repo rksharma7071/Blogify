@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-<<<<<<< HEAD
 import { Title, Meta } from "react-head";
-=======
 import Loading from "../../components/common/Loading";
->>>>>>> ecbb0cf1069a99186a9f5464c8291902aec651f7
 
 function FCategory() {
   const { categoriesData, usersData, postsData } = useLoaderData();
   const [posts, setPosts] = useState(postsData);
-<<<<<<< HEAD
 
   function getUsedCategories() {
     const categoryIds = postsData.map((post) => post.category_id._id.toString());
@@ -23,7 +19,6 @@ function FCategory() {
 
   const [categories, setCategories] = useState(getUsedCategories);
 
-=======
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   
@@ -46,7 +41,6 @@ function FCategory() {
   if (loading) {
     return <><Loading /></>;
   }
->>>>>>> ecbb0cf1069a99186a9f5464c8291902aec651f7
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       {/* ✅ SEO with react-head */}
