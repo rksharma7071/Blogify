@@ -40,6 +40,7 @@ function Blogs() {
                   <img
                     src={post.featured_image}
                     alt={post.title}
+                    title={post.title}
                     className="w-full h-full object-cover"
                   />
                 ) : (

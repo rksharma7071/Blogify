@@ -46,6 +46,7 @@ function BlogById() {
       <img
         src={featured_image}
         alt={title}
+        title={title}
         className="w-full h-auto mb-6 object-cover"
       />
 

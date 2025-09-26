@@ -19,6 +19,7 @@ function PostWithId() {
       <img
         src={featured_image}
         alt={title}
+        title={title}
         className="w-full h-auto rounded-lg mb-6 object-cover"
       />
 
